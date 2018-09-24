@@ -1,6 +1,6 @@
 {
   "_id": "vatc9",
-  "formName": "Instruct your bank or building society to pay VAT by a cheque written on a pig3",
+  "formName": "Instruct your bank or building society to pay VAT",
   "description": "",
   "formCategory": "hmrcReturnForm",
   "emailTemplateId": "",
@@ -70,8 +70,8 @@
           "id": "CT603Info",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "## You can use this form to claim back VAT on supplied goods and services. ##\n\nYour claim must be submitted within 3 years of the date of purchase.\n\nYou need to make sure you have everything you need ready to make this claim.\n\nFor each invoice you want to claim for, you’ll need to provide:\n* the date of the invoice\n* the supplier's VAT Registration Number\n* a brief description of the goods or service supplied\n* who the invoice was addressed to\n* the amount of VAT paid\n\nYour claim must be for a period of at least one calendar month and must end on the last day of a calendar month.\n\nIf you want to make a claim for less than £100, it must cover a period of at least 12 months."
+          "infoText": "## You can use this form to claim back VAT on supplied goods and services. ##\n\nYour claim must be submitted within 3 years of the date of purchase.\n\nYou need to make sure you have everything you need ready to make this claim.\n\nFor each invoice you want to claim for, you’ll need to provide:\n* the date of the invoice\n* the supplier's VAT Registration Number\n* a brief description of the goods or service supplied\n* who the invoice was addressed to\n* the amount of VAT paid\n\nYour claim must be for a period of at least one calendar month and must end on the last day of a calendar month.\n\nIf you want to make a claim for less than £100, it must cover a period of at least 12 months.",
+          "infoType": "noformat"
         }
       ]
     },
@@ -110,7 +110,6 @@
     },
     {
       "title": "Contact details",
-      "description": "Enter details of someone who we can contact if we need to discuss your claim.",
       "fields": [
         {
           "id": "name",
@@ -144,7 +143,8 @@
             "Telephone"
           ]
         }
-      ]
+      ],
+      "description": "Enter details of someone who we can contact if we need to discuss your claim."
     },
     {
       "title": "Has your organisation's address changed since the last claim?",
@@ -242,7 +242,6 @@
     {
       "title": "Enter start and end dates for this claim",
       "shortName": "Claim dates",
-      "description": "Your claim must be for a period of at least one calendar month",
       "fields": [
         {
           "id": "startDate",
@@ -259,7 +258,8 @@
           "format": "after ${startDate}",
           "errorMessage": "The claim period end date must be a valid date after the start date"
         }
-      ]
+      ],
+      "description": "Your claim must be for a period of at least one calendar month"
     },
     {
       "title": "Your invoice details",
@@ -269,8 +269,8 @@
           "id": "invoiceInfo",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "Upload a single document, which must include:\n* date of invoice\n* supplier's VAT Registration Number\n* brief description of the goods or service supplied\n* the amount of VAT paid\n\nWe accept spreadsheets and other formats like PDF and JPEG (15MB maximum)"
+          "infoText": "Upload a single document, which must include:\n* date of invoice\n* supplier's VAT Registration Number\n* brief description of the goods or service supplied\n* the amount of VAT paid\n\nWe accept spreadsheets and other formats like PDF and JPEG (15MB maximum)",
+          "infoType": "noformat"
         },
         {
           "id": "uploadInvoice",
@@ -295,14 +295,13 @@
   ],
   "declarationSection": {
     "title": "Declaration",
-    "description": "By entering your details below you confirm on behalf of your organisation that:",
     "fields": [
       {
         "id": "decInfoCheck",
         "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "\n* any claim for VAT refund on goods and services are for non-business activities\n* your organisation doesn’t make goods and doesn’t provide services that are subject to VAT\n* your organisation isn’t registered for VAT, and if requested, you will produce tax invoices to prove this"
+        "infoText": "\n* any claim for VAT refund on goods and services are for non-business activities\n* your organisation doesn’t make goods and doesn’t provide services that are subject to VAT\n* your organisation isn’t registered for VAT, and if requested, you will produce tax invoices to prove this",
+        "infoType": "noformat"
       },
       {
         "id": "declarationNameGroup",
@@ -325,7 +324,8 @@
           }
         ]
       }
-    ]
+    ],
+    "description": "By entering your details below you confirm on behalf of your organisation that:"
   },
   "acknowledgementSection": {
     "title": "Your form has been submitted",
@@ -334,15 +334,15 @@
         "id": "ackPageInfoTop",
         "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "This is your last opportunity to print or save a pdf copy of your claim"
+        "infoText": "This is your last opportunity to print or save a pdf copy of your claim",
+        "infoType": "noformat"
       },
       {
         "id": "ackPageInfoBottom",
         "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "What happens next\n\nWe will pay any VAT refund due to the bank account you provided in your claim.\n\n[Contact the VAT Helpline](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/vat-enquiries) if you need to make changes to your claim or speak to someone about your claim."
+        "infoText": "What happens next\n\nWe will pay any VAT refund due to the bank account you provided in your claim.\n\n[Contact the VAT Helpline](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/vat-enquiries) if you need to make changes to your claim or speak to someone about your claim.",
+        "infoType": "noformat"
       }
     ]
   },
