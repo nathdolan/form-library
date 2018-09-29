@@ -1,8 +1,8 @@
 {
   "_id": "corporate-interest-return",
-  "formName": "Corporate interest restriction return",
+  "formName": "Corporate interest restriction",
   "description": "",
-  "developmentPhase": "live",
+  "developmentPhase": "beta",
   "emailTemplateId": "cir_return_confirmation",
   "authConfig": {
     "authModule": "hmrc"
