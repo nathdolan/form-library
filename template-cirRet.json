@@ -1,8 +1,8 @@
 {
   "_id": "corporate-interest-return",
-  "formName": "Corporate interest restriction",
+  "formName": "Corporate interest restriction return",
   "description": "",
-  "developmentPhase": "beta",
+  "developmentPhase": "live",
   "emailTemplateId": "cir_return_confirmation",
   "authConfig": {
     "authModule": "hmrc"
@@ -20,10 +20,11 @@
         {
           "id": "agent",
           "type": "choice",
-          "label": "Are you an agent acting on behalf of the reporting company?",
+          "label": "Are you an agent acting on behalf of the reporting company fish?",
           "choices": [
             "Yes",
-            "No"
+            "No",
+            "Not sure"
           ]
         }
       ]
