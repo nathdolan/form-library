@@ -15,6 +15,18 @@
   },
   "sections": [
     {
+      "title": "Before you start",
+      "fields": [
+        {
+          "id": "CT603Info",
+          "type": "info",
+          "label": "",
+          "infoText": "## You can use this form to claim back VAT on supplied goods and services. ##\n\nYour claim must be submitted within 3 years of the date of purchase.\n\nYou need to make sure you have everything you need ready to make this claim.\n\nFor each invoice you want to claim for, you’ll need to provide:\n* the date of the invoice\n* the supplier's VAT Registration Number\n* a brief description of the goods or service supplied\n* who the invoice was addressed to\n* the amount of VAT paid\n\nYour claim must be for a period of at least one calendar month and must end on the last day of a calendar month.\n\nIf you want to make a claim for less than £100, it must cover a period of at least 12 months.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
       "title": "What type of organisation are you claiming for?",
       "shortName": "Organisation details",
       "fields": [
@@ -28,23 +40,14 @@
             "Local authority or similar body",
             "Academy school of multi-academy trust",
             "Charity",
-            "Non-departmental body or similar bodies",
-            "Another choice"
+            "Non-departmental body or similar bodies"
           ]
         }
       ]
     },
     {
-      "title": "Before you start",
-      "fields": [
-        {
-          "id": "CT603Info",
-          "type": "info",
-          "label": "",
-          "infoText": "## You can use this form to claim back VAT on supplied goods and services. ##\n\nYour claim must be submitted within 3 years of the date of purchase.\n\nYou need to make sure you have everything you need ready to make this claim.\n\nFor each invoice you want to claim for, you’ll need to provide:\n* the date of the invoice\n* the supplier's VAT Registration Number\n* a brief description of the goods or service supplied\n* who the invoice was addressed to\n* the amount of VAT paid\n\nYour claim must be for a period of at least one calendar month and must end on the last day of a calendar month.\n\nIf you want to make a claim for less than £100, it must cover a period of at least 12 months.",
-          "infoType": "noformat"
-        }
-      ]
+      "title": "New section",
+      "fields": []
     },
     {
       "title": "Enter the name of your organisation",
