@@ -2,34 +2,19 @@
   "_id": "HO10-fuel-removed-from-warehouse",
   "formName": "Hydrocarbon oils",
   "description": "",
-  "dmsSubmission": {
-    "dmsFormId": "HO10",
-    "customerId": "${eeitt.userId}",
-    "classificationType": "BT-NRU-Priority",
-    "businessArea": "BT"
-  },
   "developmentPhase": "beta",
-  "authConfig":{
+  "emailTemplateId": "ho10_confirmation_submission",
+  "authConfig": {
     "authModule": "legacyEEITTAuth",
     "regimeId": "DA"
   },
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
-  "emailTemplateId": "ho10_confirmation_submission",
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Priority",
+    "customerId": "${eeitt.userId}",
+    "dmsFormId": "HO10"
+  },
   "sections": [
-    {
-      "title": "Hydrocarbon oils return",
-      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
-      "fields": [
-        {
-          "id": "HO10Reg",
-          "type": "text",
-          "label": "These are your registration details",
-          "submitMode": "readonly",
-          "value": "${eeitt.businessUser}"
-        }
-      ]
-    },
     {
       "title": "Have you changed your business address since you submitted your last HO10 return?",
       "shortName": "Business details changed",
@@ -43,33 +28,46 @@
       ]
     },
     {
-      "includeIf":"${haveDetailsChanged=0}",
+      "title": "Hydrocarbon oils return",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "HO10Reg",
+          "type": "text",
+          "label": "These are your registration details",
+          "value": "${eeitt.businessUser}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
       "title": "Enter your business details",
       "shortName": "Business details",
+      "includeIf": "${haveDetailsChanged=0}",
       "fields": [
         {
           "id": "businessName",
           "type": "text",
           "label": "Business name",
+          "format": "text",
           "mandatory": "true",
-          "format":"text",
-          "errorMessage":"Input business details"
+          "errorMessage": "Input business details"
         },
         {
           "id": "telephoneNumber",
           "type": "text",
           "label": "Phone number",
-          "format": "telephoneNumber",
           "helpText": "Optional",
+          "format": "telephoneNumber",
           "mandatory": "no"
         },
         {
           "id": "businessAddress",
-          "label": "Registered business address",
-          "mandatory": "true",
           "type": "address",
+          "label": "Registered business address",
           "international": "yes",
-          "errorMessage":"Enter a registered business address"
+          "mandatory": "true",
+          "errorMessage": "Enter a registered business address"
         }
       ]
     },
@@ -81,18 +79,18 @@
           "id": "startDate",
           "type": "date",
           "label": "Start date",
-          "mandatory": "true",
           "helpText": "Find this on the letter you received informing you the return is due, for example 15 03 2018",
+          "mandatory": "true",
           "errorMessage": "Enter the return period start date using the correct format"
         },
         {
           "id": "endDate",
           "type": "date",
           "label": "End date",
-          "mandatory": "true",
-          "format": "before today +1",
           "helpText": "Find this on the letter you received informing you the return is due, for example: 14 04 2018",
-          "errorMessage":"Enter the return period end date using the correct format you cannot input a date in advance of today's date"
+          "format": "before today +1",
+          "mandatory": "true",
+          "errorMessage": "Enter the return period end date using the correct format you cannot input a date in advance of today's date"
         }
       ]
     },
@@ -100,23 +98,23 @@
       "title": "Upload your return document",
       "fields": [
         {
-          "type": "file",
           "id": "spreadsheet",
+          "type": "file",
           "label": "",
-          "errorMessage":"Upload the required return document"
+          "errorMessage": "Upload the required return document"
         },
         {
           "id": "uploadInfo",
           "type": "info",
-          "infoText": "The document you upload must be:  \n\n* less than 10 megabytes (10MB)  \n* in PDF or Excel format",
-          "label": ""
+          "label": "",
+          "infoText": "The document you upload must be:  \n\n* less than 10 megabytes (10MB)  \n* in PDF or Excel format"
         },
         {
           "id": "uploadContentsInfo",
           "type": "info",
-          "infoType": "long",
+          "label": "What your document must contain",
           "infoText": "Open this link in a new window:\n https://www.gov.uk/government/publications/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat#appendix-q---how-to-complete-form-ho10",
-          "label": "What your document must contain"
+          "infoType": "long"
         }
       ]
     },
@@ -127,38 +125,38 @@
           "id": "totalClaim",
           "type": "text",
           "label": "",
-          "mandatory": "true",
           "format": "sterling",
-          "errorMessage":"Enter the total amount of your return"
+          "mandatory": "true",
+          "errorMessage": "Enter the total amount of your return"
         }
       ]
     },
     {
       "title": "Enter your contact person's details",
-      "description": "This is the person we will contact if we need to discuss your return.",
       "fields": [
         {
           "id": "name",
           "type": "text",
           "label": "Full name",
+          "format": "text",
           "mandatory": "true",
-          "errorMessage":"Enter your full name",
-          "format":"text"
+          "errorMessage": "Enter your full name"
         },
         {
           "id": "emailAddress",
           "type": "text",
           "label": "Email address",
-          "mandatory": "true",
           "format": "email",
+          "mandatory": "true",
           "errorMessage": "Enter a valid email address"
         }
-      ]
+      ],
+      "description": "This is the person we will contact if we need to discuss your return."
     }
   ],
   "declarationSection": {
-    "shortName": "Sign and submit your return",
     "title": "Sign and submit your return",
+    "shortName": "Sign and submit your return",
     "fields": [
       {
         "id": "declarationNameGroup",
@@ -170,22 +168,22 @@
             "id": "declarationFullName",
             "type": "text",
             "label": "Full name",
-            "errorMessage":"Enter full name"
+            "errorMessage": "Enter full name"
           },
           {
             "id": "declarationJobTitle",
             "type": "text",
             "label": "Job title",
             "helpText": "Example: Finance Director",
-            "errorMessage":"Enter job title"
+            "errorMessage": "Enter job title"
           },
           {
             "id": "email",
             "type": "text",
             "label": "Email address",
-            "helpText":"This is for acknowledgement purposes only",
+            "helpText": "This is for acknowledgement purposes only",
             "format": "email",
-            "errorMessage":"Enter valid email address"
+            "errorMessage": "Enter valid email address"
           }
         ]
       },
@@ -198,38 +196,40 @@
             "id": "declarationText",
             "type": "info",
             "label": "",
-            "infoType": "noformat",
-            "infoText": "By submitting the return, you confirm that the details provided are true and complete."
+            "infoText": "By submitting the return, you confirm that the details provided are true and complete.",
+            "infoType": "noformat"
           }
         ]
       }
     ]
   },
   "acknowledgementSection": {
-    "shortName": "Acknowledgement Page",
     "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
     "fields": [
       {
         "id": "ackPageInfoTop",
         "type": "info",
-        "infoType": "noformat",
         "label": "If you owe duty",
-        "infoText": "## If you owe duty  \n\nIf you have a Direct Debit set up for this tax, you don't need to do anything. Your payment will be collected automatically.  \n\nOtherwise, paying electronically is an easy and secure way to pay. Use the details below and make sure you include your registration number on any payment.\n\nSort code: 20-05-17\n\nAccount number: 23372545\n\nAccount name: Customs Duty Schemes"
+        "infoText": "## If you owe duty  \n\nIf you have a Direct Debit set up for this tax, you don't need to do anything. Your payment will be collected automatically.  \n\nOtherwise, paying electronically is an easy and secure way to pay. Use the details below and make sure you include your registration number on any payment.\n\nSort code: 20-05-17\n\nAccount number: 23372545\n\nAccount name: Customs Duty Schemes",
+        "infoType": "noformat"
       },
       {
         "id": "ackPageWarning",
         "type": "info",
-        "infoType": "important",
         "label": "",
-        "infoText": "Make sure you pay the duty owed or you may face a penalty."
+        "infoText": "Make sure you pay the duty owed or you may face a penalty.",
+        "infoType": "important"
       },
       {
         "id": "ackPageInfoBottom",
         "type": "info",
-        "infoType": "noformat",
         "label": "If you need to contact us about your return",
-        "infoText": "## If you need to contact us about your return  \n\nCall 0300 200 3700 or email [morc.exciseenquiries@hmrc.gsi.gov.uk](morc.exciseenquiries@hmrc.gsi.gov.uk), quoting your registration number."
+        "infoText": "## If you need to contact us about your return  \n\nCall 0300 200 3700 or email [morc.exciseenquiries@hmrc.gsi.gov.uk](morc.exciseenquiries@hmrc.gsi.gov.uk), quoting your registration number.",
+        "infoType": "noformat"
       }
     ]
-  }
+  },
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
