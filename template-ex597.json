@@ -16,7 +16,7 @@
   },
   "sections": [
     {
-      "title": "Has your business address changed since your last claim?",
+      "title": "Has your business address since your last claim?",
       "fields": [
         {
           "id": "businessAddressChangedChoice",
