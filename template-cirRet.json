@@ -20,7 +20,7 @@
         {
           "id": "agent",
           "type": "choice",
-          "label": "Are you an agent acting on behalf of the reporting company fish?",
+          "label": "Are you an agent acting on behalf of the reporting company?",
           "choices": [
             "Yes",
             "No",
@@ -216,6 +216,7 @@
           "id": "restrict",
           "type": "choice",
           "label": "Are you subject to interest restrictions for the period?",
+          "shortName": "Interest restrictions for the period",
           "choices": [
             "Yes",
             "No"
@@ -375,6 +376,7 @@
           "id": "intAllowAngie",
           "type": "choice",
           "label": "Is the interest allowance determined by the adjusted net group-interest expense (ANGIE) of the group for the period?",
+          "shortName": "Interest allowance determined by ANGIE",
           "choices": [
             "Yes",
             "No"
