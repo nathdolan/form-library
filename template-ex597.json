@@ -16,7 +16,7 @@
   },
   "sections": [
     {
-      "title": "Has your business address since your last claim?",
+      "title": "Has your business address changed since your last claim?",
       "fields": [
         {
           "id": "businessAddressChangedChoice",
@@ -100,6 +100,7 @@
     {
       "title": "Enter your contact person's details",
       "shortName": "Contact person",
+      "description": "This is the person we will contact if we need to discuss your claim.",
       "fields": [
         {
           "id": "contactFullName",
@@ -115,8 +116,7 @@
           "mandatory": "false",
           "errorMessage": "Enter your contact person's email address"
         }
-      ],
-      "description": "This is the person we will contact if we need to discuss your claim."
+      ]
     },
     {
       "title": "Have the bank details for the business changed since your last claim?",
@@ -273,6 +273,7 @@
     {
       "title": "Enter details of the final product made using the alcoholic ingredients",
       "includeIf": "${enterOnScreenChoice = 0}",
+      "description": "Enter the description of the final product made and it's weight in kilograms (kg).",
       "fields": [
         {
           "id": "productGroup",
@@ -306,11 +307,11 @@
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
-      ],
-      "description": "Enter the description of the final product made and it's weight in kilograms (kg)."
+      ]
     },
     {
       "title": "Tell us the amount of alcohol ingredients used and duty paid",
+      "description": "Select the alcohol ingredients used in your product.",
       "fields": [
         {
           "id": "spiritsGroup",
@@ -410,8 +411,7 @@
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
-      ],
-      "description": "Select the alcohol ingredients used in your product."
+      ]
     },
     {
       "title": "Do you have any underclaims or overclaims from previous periods to declare?",
@@ -464,6 +464,7 @@
     {
       "title": "Enter the details for underclaims from a previous period",
       "includeIf": "${overUnderClaimsChoice=0}",
+      "description": "Select the alcoholic ingredients used in your product below.",
       "fields": [
         {
           "id": "spiritsGroupUnderClaim",
@@ -535,12 +536,12 @@
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
-      ],
-      "description": "Select the alcoholic ingredients used in your product below."
+      ]
     },
     {
       "title": "Upload supporting documents",
       "includeIf": "${overUnderClaimsChoice=0}",
+      "description": "You'll need to provide some documentation with your claim",
       "fields": [
         {
           "id": "supportingDocumentsInfo",
@@ -632,8 +633,7 @@
             }
           ]
         }
-      ],
-      "description": "You'll need to provide some documentation with your claim"
+      ]
     },
     {
       "title": "Enter the start and end dates for this overclaim",
@@ -659,6 +659,7 @@
     {
       "title": "Enter the details for overclaims from a previous period",
       "includeIf": "${overUnderClaimsChoice=1}",
+      "description": "Select the alcoholic ingredients used in your product below.",
       "fields": [
         {
           "id": "spiritsGroupOverClaim",
@@ -730,8 +731,7 @@
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
-      ],
-      "description": "Select the alcoholic ingredients used in your product below."
+      ]
     },
     {
       "title": "Enter the start and end dates for this underclaim",
@@ -757,6 +757,7 @@
     {
       "title": "Enter the details for underclaims from a previous period",
       "includeIf": "${overUnderClaimsChoice=2}",
+      "description": "Select the alcoholic ingredients used in your product below.",
       "fields": [
         {
           "id": "spiritsGroupUnderClaimBoth",
@@ -828,8 +829,7 @@
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
-      ],
-      "description": "Select the alcoholic ingredients used in your product below."
+      ]
     },
     {
       "title": "Enter the start and end dates for this overclaim",
