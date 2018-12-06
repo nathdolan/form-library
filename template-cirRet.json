@@ -20,7 +20,7 @@
         {
           "id": "agent",
           "type": "choice",
-          "label": "Are you an agent acting on behalf of the reporting company?",
+          "label": "Are you an agent acting on behalf of the reporting company??",
           "choices": [
             "Yes",
             "No",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "title": "Enter the reporting company's details",
+      "title": "Enter the reporting company details",
       "fields": [
         {
           "id": "reportingCompany",
@@ -57,7 +57,7 @@
         {
           "id": "oRN",
           "type": "text",
-          "label": " UK Tax reference - tax office",
+          "label": "UK Tax reference - tax office",
           "helpText": "This is the first three digits of the tax reference number before the space (for example, 123 1234567890)",
           "format": "text(3,3)",
           "errorMessage": "Enter the first three digits of your thirteen digit unique taxpayer reference number, if this is unknown enter 000",
@@ -97,6 +97,7 @@
           "id": "ultPName",
           "type": "text",
           "label": "Ultimate parent company name",
+          "helpText": "Some help text more",
           "format": "text",
           "mandatory": "yes",
           "errorMessage": "Ultimate parent company name should be written in English"
