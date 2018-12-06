@@ -658,6 +658,7 @@
     },
     {
       "title": "Enter the details for overclaims from a previous period",
+      "shortName": "Overclaims from previous period",
       "includeIf": "${overUnderClaimsChoice=1}",
       "description": "Select the alcoholic ingredients used in your product below.",
       "fields": [
