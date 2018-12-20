@@ -1,6 +1,6 @@
 {
   "_id": "testform",
-  "formName": "Claim for refund of VAT by certain bodies 56",
+  "formName": "Form for testing purposes",
   "description": "",
   "formCategory": "hmrcClaimForm",
   "emailTemplateId": "eeitt_confirmation_submission",
@@ -15,7 +15,7 @@
   },
   "sections": [
     {
-      "title": "Before you start 3",
+      "title": "Before you start",
       "fields": [
         {
           "id": "CT603Info",
@@ -40,9 +40,15 @@
             "Local authority or similar body",
             "Academy school of multi-academy trust",
             "Charity",
-            "Non-departmental body or similar bodies",
-            "Another choice 2"
+            "Non-departmental body or similar bodies"
           ]
+        },
+        {
+          "id": "newTextField",
+          "type": "text",
+          "label": "New text field",
+          "helpText": "help text",
+          "format": "ukSortCode"
         }
       ]
     },
@@ -52,7 +58,7 @@
         {
           "id": "orgName",
           "type": "text",
-          "label": "",
+          "label": "Enter the name of the organisation",
           "shortName": "Organisation name",
           "format": "text",
           "errorMessage": "Enter organisation name"
@@ -61,6 +67,7 @@
     },
     {
       "title": "Contact details",
+      "description": "Enter details of someone who we can contact if we need to discuss your claim.",
       "fields": [
         {
           "id": "name",
@@ -94,8 +101,7 @@
             "Telephone"
           ]
         }
-      ],
-      "description": "Enter details of someone who we can contact if we need to discuss your claim."
+      ]
     },
     {
       "title": "Has your organisation's address changed since the last claim?",
@@ -193,6 +199,7 @@
     {
       "title": "Enter start and end dates for this claim",
       "shortName": "Claim dates",
+      "description": "Your claim must be for a period of at least one calendar month",
       "fields": [
         {
           "id": "startDate",
@@ -209,8 +216,7 @@
           "format": "after ${startDate}",
           "errorMessage": "The claim period end date must be a valid date after the start date"
         }
-      ],
-      "description": "Your claim must be for a period of at least one calendar month"
+      ]
     },
     {
       "title": "Your invoice details",
@@ -246,6 +252,7 @@
   ],
   "declarationSection": {
     "title": "Declaration",
+    "description": "By entering your details below you confirm on behalf of your organisation that:",
     "fields": [
       {
         "id": "decInfoCheck",
@@ -275,8 +282,7 @@
           }
         ]
       }
-    ],
-    "description": "By entering your details below you confirm on behalf of your organisation that:"
+    ]
   },
   "acknowledgementSection": {
     "title": "Your form has been submitted",
