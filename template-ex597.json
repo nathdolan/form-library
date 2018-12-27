@@ -1,925 +1,684 @@
 {
   "_id": "EX597",
-  "formName": "Alcoholic Ingredients Relief",
+  "formName": "Tell HMRC about a company failing to stop people evading tax",
   "description": "",
-  "formCategory": "hmrcClaimForm",
-  "emailTemplateId": "ho10_confirmation_submission",
+  "formCategory": "hmrcReturnForm",
+  "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
-    "authModule": "legacyEEITTAuth",
-    "regimeId": "GF"
+    "authModule": "hmrc"
   },
   "dmsSubmission": {
     "businessArea": "FinanceOpsCorpT",
     "classificationType": "BT-NRU-Environmental",
     "customerId": "${auth.payenino}",
-    "dmsFormId": "AIR"
+    "dmsFormId": "CSR"
   },
   "sections": [
     {
-      "title": "Has your business address changed since your last claim?",
+      "title": "Your contact details",
       "fields": [
         {
-          "id": "businessAddressChangedChoice",
-          "type": "choice",
-          "label": "",
-          "format": "yesno",
-          "errorMessage": "Select yes if your business address has changed since your last claim"
-        }
-      ]
-    },
-    {
-      "title": "Enter the new address and phone number for your organisation",
-      "includeIf": "${businessAddressChangedChoice = 0}",
-      "fields": [
-        {
-          "id": "businessAddressChangedInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "You will need to upload a bank statement to verify your details",
-          "infoType": "important"
-        },
-        {
-          "id": "businessAddressChanged",
-          "type": "address",
-          "label": "Registered business address",
-          "international": "true"
-        },
-        {
-          "id": "phoneNumberChanged",
-          "type": "text",
-          "label": "Phone number",
-          "format": "telephoneNumber"
-        }
-      ]
-    },
-    {
-      "title": "Tell us where alcohol is used",
-      "fields": [
-        {
-          "id": "alcoholAddressChangedChoice",
-          "type": "choice",
-          "label": "Is the address where alcohol is used the same as the business address?",
-          "format": "yesno",
-          "errorMessage": "Select yes if the address where alcohol is used has changed since your last claim"
-        }
-      ]
-    },
-    {
-      "title": "Enter the new address where alcohol is used",
-      "includeIf": "${alcoholAddressChangedChoice = 1}",
-      "fields": [
-        {
-          "id": "alcoholAddressChanged",
-          "type": "address",
-          "label": "",
-          "international": "true"
-        },
-        {
-          "id": "alcoholNumberChanged",
-          "type": "text",
-          "label": "Phone number",
-          "format": "telephoneNumber"
-        }
-      ]
-    },
-    {
-      "title": "Which of the following best describes your business activity?",
-      "fields": [
-        {
-          "id": "businessActivityChoice",
-          "type": "choice",
-          "label": "",
-          "errorMessage": "Please choose the option that best describes your business activity",
-          "choices": [
-            "I am the manufacturer of an eligible article",
-            "I have supplied duty paid alcohol used in the production of an eligible article"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter your contact person's details",
-      "shortName": "Contact person",
-      "description": "This is the person we will contact if we need to discuss your claim.",
-      "fields": [
-        {
-          "id": "contactFullName",
+          "id": "firstNameBusiness",
           "type": "text",
           "label": "Full name",
-          "errorMessage": "Enter your contact person's full name"
+          "shortName": "Full name",
+          "mandatory": "true",
+          "errorMessage": "Enter your full name"
         },
         {
-          "id": "contactEmail",
+          "id": "agentTelephone",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area and country codes for UK landlines and overseas numbers",
+          "format": "telephoneNumber",
+          "mandatory": "true"
+        },
+        {
+          "id": "emailAgent",
           "type": "text",
           "label": "Email address",
+          "shortName": "Email address",
           "format": "email",
-          "mandatory": "false",
-          "errorMessage": "Enter your contact person's email address"
+          "mandatory": "true"
+        },
+        {
+          "id": "contactAddress",
+          "type": "address",
+          "label": "Address",
+          "helpText": "Enter your main contact address",
+          "postcodeLookup": "no"
         }
       ]
     },
     {
-      "title": "Have the bank details for the business changed since your last claim?",
+      "title": "What is your connection to the organisation this report is about?",
       "fields": [
         {
-          "id": "bankDetailsChanged",
+          "id": "connectionToBusiness",
+          "type": "text",
+          "label": "What is your connection to the organisation this report is about?",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Is the organisation a company or a partnership?",
+      "fields": [
+        {
+          "id": "CompanyType",
           "type": "choice",
-          "label": "",
+          "label": "Is the organisation a company or a partnership?",
+          "shortName": "Organisation type",
+          "helpText": "If you are unsure please choose company",
+          "choices": [
+            "Company",
+            "Limited Partnership or Limited Liability Partnership",
+            "Other partnership"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is the company registered in the UK?",
+      "includeIf": "${CompanyType=0}",
+      "fields": [
+        {
+          "id": "companyRegUK",
+          "type": "choice",
+          "label": "Is the company registered in the UK?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Enter your new bank details",
-      "shortName": "Payment details",
-      "includeIf": "${bankDetailsChanged=0}",
+      "title": "Is the partnership registered in the UK?",
+      "includeIf": "${CompanyType!=0}",
       "fields": [
         {
-          "id": "bankDocVerifyInfo",
+          "id": "partnershipRegUK",
+          "type": "choice",
+          "label": "Is the partnership registered in the UK?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Enter the company details",
+      "includeIf": "${CompanyType=0 && (companyRegUK=0 || partnershipRegUK=0)}",
+      "fields": [
+        {
+          "id": "legalNameUKUK",
+          "type": "text",
+          "label": "Company name",
+          "helpText": "Enter the registered name as used at Companies House",
+          "mandatory": "true"
+        },
+        {
+          "id": "tradingNameUKUK",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "helpText": "Enter the trading name if it is different from the legal name",
+          "mandatory": "false"
+        },
+        {
+          "id": "ukBaseAddressUK",
+          "type": "address",
+          "label": "Address",
+          "helpText": "Enter the address as it is registered at Companies House",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "companyRegNumberUK",
+          "type": "text",
+          "label": "Companies House registration number",
+          "helpText": "This is issued by Companies House and consists of 8 numbers, or 2 letters followed by 6 numbers",
+          "mandatory": "true"
+        },
+        {
+          "id": "companyUniqueTaxRefNumUK",
+          "type": "text",
+          "label": "Company Unique Tax Reference number (optional)",
+          "helpText": "This is a 10 digit number, for example 1234567890. It can be found on documents HMRC has issued",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the company",
+      "includeIf": "${CompanyType=0 && (companyRegUK=1 || partnershipRegUK=1)}",
+      "fields": [
+        {
+          "id": "legalNameUKNotUK",
+          "type": "text",
+          "label": "Legal or registered name",
+          "helpText": "Enter the name as officially registered in the country of formation",
+          "mandatory": "true"
+        },
+        {
+          "id": "tradingNameUKNotUK",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "helpText": "Enter the trading name if it is different from the legal name",
+          "mandatory": "false"
+        },
+        {
+          "id": "formedAddress",
+          "type": "text",
+          "label": "Address",
+          "helpText": "Enter the full registered address in the country of formation",
+          "mandatory": "true",
+          "multiline": "true"
+        },
+        {
+          "id": "formedCountry",
+          "type": "text",
+          "label": "Country where the company was formed",
+          "mandatory": "true"
+        },
+        {
+          "id": "companyRegNumberNotUK",
+          "type": "text",
+          "label": "Company registration number (if applicable)",
+          "helpText": "Enter the company registration number in the country of formation (if applicable)",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the partnership",
+      "includeIf": "${CompanyType=1 && (companyRegUK=0 || partnershipRegUK=0)}",
+      "fields": [
+        {
+          "id": "legalNameUKPartUK",
+          "type": "text",
+          "label": "Legal or registered name",
+          "helpText": "Enter the name as it is registered at Companies House",
+          "mandatory": "true"
+        },
+        {
+          "id": "tradingNameUKPartUK",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "helpText": "Enter the trading name if it is different from the legal name",
+          "mandatory": "false"
+        },
+        {
+          "id": "ukBaseAddressPartUK",
+          "type": "address",
+          "label": "Address",
+          "helpText": "Enter the address as it is registered at Companies House",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "companyRegNumberPartUK",
+          "type": "text",
+          "label": "Company House Registration Number",
+          "helpText": "This is issued by Companies House and consists of 8 numbers, or 2 letters followed by 6 numbers",
+          "mandatory": "true"
+        },
+        {
+          "id": "companyUniqueTaxRefNumPartUK",
+          "type": "text",
+          "label": "Partnership Unique Tax Reference number (optional)",
+          "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the partnership",
+      "includeIf": "${CompanyType=1 && (companyRegUK=1 || partnershipRegUK=1)}",
+      "fields": [
+        {
+          "id": "legalNameUKPartNotUK",
+          "type": "text",
+          "label": "Legal or registered name",
+          "helpText": "Enter the name as officially registered in the country of formation",
+          "mandatory": "true"
+        },
+        {
+          "id": "tradingNameUKPartNotUK",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "helpText": "Enter the trading name if it is different from the legal name",
+          "mandatory": "false"
+        },
+        {
+          "id": "formedAddressLimited",
+          "type": "text",
+          "label": "Address",
+          "helpText": "Enter the full registered address in the country of formation",
+          "mandatory": "true",
+          "multiline": "true"
+        },
+        {
+          "id": "formedCountryLimited",
+          "type": "text",
+          "label": "Country where the partnership was formed",
+          "mandatory": "true"
+        },
+        {
+          "id": "companyRegNumberNotUKLimited",
+          "type": "text",
+          "label": "Partnership registration number (if applicable)",
+          "helpText": "Enter the Partnership registration number in the country of formation (if applicable)",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the partnership",
+      "includeIf": "${CompanyType=2 && (companyRegUK=0 || partnershipRegUK=0)}",
+      "fields": [
+        {
+          "id": "tradingNameUKPartOther",
+          "type": "text",
+          "label": "Trading name",
+          "helpText": ""
+        },
+        {
+          "id": "ukBaseAddressPartOther",
+          "type": "address",
+          "label": "Address",
+          "helpText": "Enter the address as the partnership is registered",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "companyUniqueTaxRefNumPartOther",
+          "type": "text",
+          "label": "Partnership Unique Tax Reference number (optional)",
+          "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the partnership",
+      "includeIf": "${CompanyType=2 && (companyRegUK=1 || partnershipRegUK=1)}",
+      "fields": [
+        {
+          "id": "legalNameUKPartNotUKUpdated",
+          "type": "text",
+          "label": "Legal or registered name",
+          "helpText": "Enter the name as officially registered in the country of formation",
+          "mandatory": "true"
+        },
+        {
+          "id": "tradingNameUKPartNotUKUpdated",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "helpText": "Enter the trading name if it is different from the legal name",
+          "mandatory": "false"
+        },
+        {
+          "id": "formedAddressLimitedUpdated",
+          "type": "text",
+          "label": "Address",
+          "helpText": "Enter the full registered address in the country of formation",
+          "mandatory": "true",
+          "multiline": "true"
+        },
+        {
+          "id": "formedCountryLimitedUpdated",
+          "type": "text",
+          "label": "Country where the partnership was formed",
+          "mandatory": "true"
+        },
+        {
+          "id": "companyRegNumberNotUKLimitedUpdated",
+          "type": "text",
+          "label": "Partnership registration number (if applicable)",
+          "helpText": "Enter the Partnership registration number in the country of formation (if applicable)",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Explain how the criminal facilitation of tax evasion took place",
+      "description": "",
+      "fields": [
+        {
+          "id": "summariseHowTax",
+          "type": "text",
+          "label": "Explain how the criminal facilitation of tax evasion took place",
+          "helpText": "Summarise how the tax evasion was facilitated, include: who within the organisation facilitated the evasion, the capacity in which they were acting, who they helped to evade tax, what tax was evaded and how it was discovered",
+          "format": "text(1,5000)",
+          "mandatory": "true",
+          "multiline": "true"
+        },
+        {
+          "id": "importantLegalText",
           "type": "info",
           "label": "",
-          "infoText": "You will need to upload a bank statement to verify your details",
+          "infoText": "For the facilitation of tax evasion to be a criminal act, a person must have deliberately and dishonestly helped another person to evade tax. This doesn’t include the accidental, ignorant or negligent facilitation of tax evasion.",
           "infoType": "important"
-        },
-        {
-          "id": "bankDetailsGroup",
-          "type": "group",
-          "label": "Bank details",
-          "fields": [
-            {
-              "id": "bankName",
-              "type": "text",
-              "label": "Bank or building society name",
-              "errorMessage": "Please enter the organisation's bank or building society name"
-            },
-            {
-              "id": "bankAccountNumber",
-              "type": "text",
-              "label": "Account number",
-              "format": "ukBankAccountNumber",
-              "errorMessage": "Please enter the organisation's account number"
-            },
-            {
-              "id": "bankSortCode",
-              "type": "text",
-              "label": "Sort code",
-              "format": "ukSortCode",
-              "errorMessage": "Please enter the organisation's sort code"
-            }
-          ]
-        },
-        {
-          "id": "accountHoldersGroup",
-          "type": "group",
-          "label": "Account holders",
-          "format": "horizontal",
-          "repeatsMax": 20,
-          "repeatAddAnotherText": "Add another account holder",
-          "fields": [
-            {
-              "id": "accountHoldersGroupName",
-              "type": "text",
-              "label": "Account holder name $n"
-            }
-          ]
         }
       ]
     },
     {
-      "title": "Does your claim cover a production or manufacture period of three months?",
+      "title": "Estimate the total value of evasion that has been facilitated",
       "fields": [
         {
-          "id": "claimCovers3MonthsChoice",
-          "type": "choice",
-          "label": "",
-          "format": "horizontal",
-          "choices": [
-            "Yes",
-            "No"
-          ],
-          "optionHelpText": [
-            "Your claim must also be within three years of the end of the 3 month production period in which the alcohol was incorporated into an eligible article. \n\nFind out more about the time limits for [making a claim](https://www.gov.uk/government/publications/excise-notice-41-alcoholic-ingredients-relief/excise-notice-41-alcoholic-ingredients-relief#making-a-claim).",
-            ""
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Is your production or manufacture period less than three months because you have stopped trading?",
-      "includeIf": "${claimCovers3MonthsChoice = 1}",
-      "fields": [
-        {
-          "id": "stoppedTradingChoice",
-          "type": "choice",
-          "label": "",
-          "format": "horizontal",
-          "choices": [
-            "Yes",
-            "No"
-          ],
-          "optionHelpText": [
-            "",
-            "Claims must cover a 3 month period. If this is not the case, you can continue with this claim but we will contact you to discuss reasons before considering your claim.  \nRefer to [Excise Notice 41, section 5.4](https://www.gov.uk/government/publications/excise-notice-41-alcoholic-ingredients-relief/excise-notice-41-alcoholic-ingredients-relief#para54)"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the start and end dates for this claim",
-      "shortName": "Your claim period",
-      "fields": [
-        {
-          "id": "claimStartDate",
-          "type": "date",
-          "label": "Start date",
-          "helpText": "Example: 30 09 2017",
-          "errorMessage": "Please enter a valid start date"
-        },
-        {
-          "id": "claimEndDate",
-          "type": "date",
-          "label": "End date",
-          "helpText": "Example: 31 12 2017",
-          "format": "after ${claimStartDate}",
-          "errorMessage": "Please enter a valid end date.  Note this must be after the start date."
-        }
-      ]
-    },
-    {
-      "title": "Tell us about the products made or prepared using the alcoholic ingredients you are claiming relief for",
-      "fields": [
-        {
-          "id": "enterOnScreenInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "You need to give details of the products you are claiming a refund for.  \n\nIf you have less than 20 products, enter the details on-screen.  \n\nYou can also upload a file that lists all the products you are claiming for.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "enterOnScreenChoice",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "I will enter product details on screen",
-            "I will upload a file containing my product details"
-          ],
-          "optionHelpText": [
-            "",
-            "You can upload your product list at the end of this claim"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter details of the final product made using the alcoholic ingredients",
-      "includeIf": "${enterOnScreenChoice = 0}",
-      "description": "Enter the description of the final product made and it's weight in kilograms (kg).",
-      "fields": [
-        {
-          "id": "productGroup",
-          "type": "group",
-          "label": "",
-          "format": "horizontal",
-          "repeatsMax": 100,
-          "presentationHint": "summariseGroupAsGrid",
-          "fields": [
-            {
-              "id": "productDescription",
-              "type": "text",
-              "label": "Product description",
-              "errorMessage": "Please enter a product description"
-            },
-            {
-              "id": "quantityInKg",
-              "type": "text",
-              "label": "Quantity in kg",
-              "format": "number(12,2,'kg')",
-              "errorMessage": "Please enter a quantity"
-            }
-          ]
-        },
-        {
-          "id": "alcoholQuantityTotal",
+          "id": "estimateTotalValues",
           "type": "text",
-          "label": "Total",
-          "format": "number(12,2,'kg')",
-          "value": "${quantityInKg.sum}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        }
-      ]
-    },
-    {
-      "title": "Tell us the amount of alcohol ingredients used and duty paid",
-      "description": "Select the alcohol ingredients used in your product.",
-      "fields": [
-        {
-          "id": "spiritsGroup",
-          "type": "group",
-          "label": "Spirits",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "spiritsQuantity",
-              "type": "text",
-              "label": "Quantity in litres",
-              "format": "number(11, 2, 'litres')",
-              "mandatory": "false"
-            },
-            {
-              "id": "spiritsDutyDue",
-              "type": "text",
-              "label": "Amount of duty due",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "beerGroup",
-          "type": "group",
-          "label": "Beer",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "beerQuantity",
-              "type": "text",
-              "label": "Quantity in litres",
-              "format": "number(11, 2, 'litres')",
-              "mandatory": "false"
-            },
-            {
-              "id": "beerDutyDue",
-              "type": "text",
-              "label": "Amount of duty due",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "wineGroup",
-          "type": "group",
-          "label": "Wine or Made-wine including fortified wine",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "wineQuantity",
-              "type": "text",
-              "label": "Quantity in litres",
-              "format": "number(11, 2, 'litres')",
-              "mandatory": "false"
-            },
-            {
-              "id": "wineDutyDue",
-              "type": "text",
-              "label": "Amount of duty due",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "ciderGroup",
-          "type": "group",
-          "label": "Cider and Perry",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "ciderQuantity",
-              "type": "text",
-              "label": "Quantity in litres",
-              "format": "number(11, 2, 'litres')",
-              "mandatory": "false"
-            },
-            {
-              "id": "ciderDutyDue",
-              "type": "text",
-              "label": "Amount of duty due",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "totalDutyPaid",
-          "type": "text",
-          "label": "Total amount of duty paid",
-          "shortName": "Total amount of duty for this claim period",
+          "label": "Estimate the total value of evasion that has been facilitated",
           "format": "sterling",
-          "value": "${spiritsDutyDue + beerDutyDue + wineDutyDue + ciderDutyDue}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
+          "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Do you have any underclaims or overclaims from previous periods to declare?",
+      "title": "Is the facilitation ongoing?",
       "fields": [
         {
-          "id": "overUnderClaimsYesNo",
+          "id": "facilitationOngoing",
           "type": "choice",
-          "label": "",
+          "label": "Is the facilitation ongoing?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Are they underclaims or overclaims?",
-      "includeIf": "${overUnderClaimsYesNo = 0}",
+      "title": "Estimate the date when the facilitation ended",
+      "includeIf": "${facilitationOngoing=1}",
       "fields": [
         {
-          "id": "overUnderClaimsChoice",
+          "id": "endDate",
+          "type": "date",
+          "label": "Estimate when the facilitation ended",
+          "helpText": "For example, 19 4 2018",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Have you been able to identify specific individuals involved in the tax evasion?",
+      "fields": [
+        {
+          "id": "identifySpecific",
+          "type": "choice",
+          "label": "Have you been able to identify specific individuals involved in the tax evasion?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about any other information you feel may be relevant",
+      "fields": [
+        {
+          "id": "anyOtherInfo",
+          "type": "text",
+          "label": "Tell us about any other information you feel may be relevant",
+          "format": "text(1,4000)",
+          "mandatory": "true",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Has the company previously reported a failure to stop tax evasion?",
+      "fields": [
+        {
+          "id": "selfReportedFailure",
+          "type": "choice",
+          "label": "Has the company previously reported a failure to stop tax evasion?",
+          "choices": [
+            "Yes",
+            "No",
+            "I don't know"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide the reference numbers for all previous reports ",
+      "includeIf": "${selfReportedFailure=0}",
+      "fields": [
+        {
+          "id": "summariseHowTaxing",
+          "type": "text",
+          "label": "Provide the reference numbers for all previous reports ",
+          "helpText": "Enter the reference number (if you have this)",
+          "format": "text(1,60)",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Have you made any other reports about this incident, such as a Suspicious Activity Report? ",
+      "fields": [
+        {
+          "id": "madeOtherReports",
+          "type": "choice",
+          "label": "Have you made any other reports about this incident to other agencies, such as a Suspicious Activity Report? ",
+          "choices": [
+            "Yes",
+            "No",
+            "I don't know"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the other reports",
+      "includeIf": "${madeOtherReports=0}",
+      "fields": [
+        {
+          "id": "whoYouHaveInformed",
+          "type": "text",
+          "label": "Tell us who you’ve informed about the tax evasion",
+          "format": "text(1,200)",
+          "mandatory": "true",
+          "multiline": "true"
+        },
+        {
+          "id": "referenceNumbersAssociated",
+          "type": "text",
+          "label": "Enter any reference numbers associated with these reports (optional)",
+          "format": "text(1,60)",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Is the company you are reporting overseen by a regulator, supervisor or a licensing authority?",
+      "fields": [
+        {
+          "id": "overseenByARegulator",
+          "type": "choice",
+          "label": "Is the company you are reporting overseen by a regulator, supervisor or licensing authority?",
+          "choices": [
+            "Yes",
+            "No",
+            "I don't know"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide details of the other authorities",
+      "includeIf": "${overseenByARegulator=0}",
+      "description": "Enter the details for each authority.",
+      "fields": [
+        {
+          "id": "nameOfAuthority",
+          "type": "text",
+          "label": "Name of authority",
+          "mandatory": "true"
+        },
+        {
+          "id": "countryOfAuthority",
+          "type": "text",
+          "label": "Country of authority",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Does the company you are reporting have procedures in place that were designed to prevent the facilitation of tax evasion?",
+      "fields": [
+        {
+          "id": "preventionProcYesNo",
+          "type": "choice",
+          "label": "Does the company you are reporting have procedures in place that were designed to prevent the facilitation of tax evasion?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Which of the following are part of the prevention procedures?",
+      "includeIf": "${preventionProcYesNo=0}",
+      "fields": [
+        {
+          "id": "partOfPrevention",
+          "type": "choice",
+          "label": "Which of the following are part of the prevention procedures?",
+          "helpText": "Select one or more options",
+          "multivalue": "yes",
+          "choices": [
+            "Risk assessment",
+            "Proportionality of risk-based prevention procedures ",
+            "Top level commitment",
+            "Due diligence",
+            "Communication and training",
+            "Monitoring and review"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe why no prevention procedures are in place",
+      "includeIf": "${preventionProcYesNo=1}",
+      "fields": [
+        {
+          "id": "whyNotPrevention",
+          "type": "text",
+          "label": "Briefly describe why no prevention procedures are in place",
+          "format": "text(1,1000)",
+          "mandatory": "true",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Confirm that you are authorised to make this report",
+      "shortName": "",
+      "description": "You must confirm that the company has authorised you to make this report.",
+      "fields": [
+        {
+          "id": "declaration",
           "type": "choice",
           "label": "",
+          "mandatory": "yes",
+          "multivalue": "yes",
+          "presentationHint": "invisibleInSummary",
+          "errorMessage": "You must confirm that you have read and understand the declaration",
           "choices": [
-            "Under claim",
-            "Over claim",
-            "Both"
+            "I confirm that I am authorised to make this report. I confirm that I understand that I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true."
           ]
         }
       ]
     },
     {
-      "title": "Enter the start and end dates for this underclaim",
-      "includeIf": "${overUnderClaimsChoice=0}",
+      "title": "Report reference code",
+      "description": "Create and enter a unique reference code for this report and keep a note of it. HMRC may ask for this, along with your Government Gateway ID and report submission date (both shown below) if we need to contact you about this report. ",
       "fields": [
         {
-          "id": "underclaimStartDate",
-          "type": "date",
-          "label": "Start date",
-          "helpText": "Example: 30 09 2017",
-          "errorMessage": "Please enter a valid start date"
-        },
-        {
-          "id": "underclaimEndDate",
-          "type": "date",
-          "label": "End date",
-          "helpText": "Example: 31 12 2017",
-          "format": "after ${underclaimStartDate}",
-          "errorMessage": "Please enter a valid end date.  Note this must be after the start date."
-        }
-      ]
-    },
-    {
-      "title": "Enter the details for underclaims from a previous period",
-      "includeIf": "${overUnderClaimsChoice=0}",
-      "description": "Select the alcoholic ingredients used in your product below.",
-      "fields": [
-        {
-          "id": "spiritsGroupUnderClaim",
-          "type": "group",
-          "label": "Spirit",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "spiritsDutyUnderClaimed",
-              "type": "text",
-              "label": "Amount of duty underclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "beerGroupUnderClaim",
-          "type": "group",
-          "label": "Beer",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "beerDutyUnderClaimed",
-              "type": "text",
-              "label": "Amount of duty underclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "wineGroupUnderClaim",
-          "type": "group",
-          "label": "Wine/Made-wine including fortified wine",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "wineDutyUnderClaimed",
-              "type": "text",
-              "label": "Amount of duty underclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "ciderGroupUnderClaim",
-          "type": "group",
-          "label": "Cider and perry",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "ciderDutyUnderClaimed",
-              "type": "text",
-              "label": "Amount of duty underclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "totalDutyPaidUnderClaimed",
+          "id": "userProvidedID",
           "type": "text",
-          "label": "Total amount of duty paid",
-          "shortName": "Total amount of duty for this claim period",
-          "format": "sterling",
-          "value": "${spiritsDutyUnderClaimed + beerDutyUnderClaimed + wineDutyUnderClaimed + ciderDutyUnderClaimed}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        }
-      ]
-    },
-    {
-      "title": "Upload supporting documents",
-      "includeIf": "${overUnderClaimsChoice=0}",
-      "description": "You'll need to provide some documentation with your claim",
-      "fields": [
-        {
-          "id": "supportingDocumentsInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "The documents you upload must be:  \n\n* in PDF, JPEG or Excel format\n* less than 10 megabytes (10MB)\n* no more than 25MB in total\n\n If you don't provide all the documentation we need, this could delay your claim"
+          "label": "Unique submission reference code",
+          "helpText": "Create and enter a unique code for this report that is at least 5 characters long, using letters and numbers. For example, JoeSmith1977 ",
+          "format": "text"
         },
         {
-          "id": "productListGroup",
-          "type": "group",
-          "label": "Product list for this claim",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "productListSpreadsheet",
-              "type": "file",
-              "label": "",
-              "mandatory": "false"
-            },
-            {
-              "id": "productListGuidance",
-              "type": "info",
-              "label": "Document guidance",
-              "infoText": "Content goes here",
-              "infoType": "long"
-            }
-          ]
-        },
-        {
-          "id": "worksheetforClaimGroup",
-          "type": "group",
-          "label": "Worksheet to show how you calculated your claim",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "worksheetSpreadsheet",
-              "type": "file",
-              "label": "",
-              "mandatory": "false"
-            },
-            {
-              "id": "worksheetGuidance",
-              "type": "info",
-              "label": "Document guidance",
-              "infoText": "Content goes here",
-              "infoType": "long"
-            }
-          ]
-        },
-        {
-          "id": "newBusinessGroup",
-          "type": "group",
-          "label": "Proof of new business address",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "newBusinessSpreadsheet",
-              "type": "file",
-              "label": "",
-              "mandatory": "false"
-            },
-            {
-              "id": "newBusinessGuidance",
-              "type": "info",
-              "label": "Document guidance",
-              "infoText": "Content goes here",
-              "infoType": "long"
-            }
-          ]
-        },
-        {
-          "id": "calculationGroup",
-          "type": "group",
-          "label": "Worksheet to show how you calculated your underclaim or overclaim",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "calculationSpreadsheet",
-              "type": "file",
-              "label": "",
-              "mandatory": "false"
-            },
-            {
-              "id": "calculationGuidance",
-              "type": "info",
-              "label": "Document guidance",
-              "infoText": "Content goes here",
-              "infoType": "long"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the start and end dates for this overclaim",
-      "includeIf": "${overUnderClaimsChoice=1}",
-      "fields": [
-        {
-          "id": "overclaimStartDate",
-          "type": "date",
-          "label": "Start date",
-          "helpText": "Example: 30 09 2017",
-          "errorMessage": "Please enter a valid start date"
-        },
-        {
-          "id": "overclaimEndDate",
-          "type": "date",
-          "label": "End date",
-          "helpText": "Example: 31 12 2017",
-          "format": "after ${overclaimStartDate}",
-          "errorMessage": "Please enter a valid end date.  Note this must be after the start date."
-        }
-      ]
-    },
-    {
-      "title": "Enter the details for overclaims from a previous period",
-      "shortName": "Overclaims from previous period",
-      "includeIf": "${overUnderClaimsChoice=1}",
-      "description": "Select the alcoholic ingredients used in your product below.",
-      "fields": [
-        {
-          "id": "spiritsGroupOverClaim",
-          "type": "group",
-          "label": "Spirit",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "spiritsDutyOverClaimed",
-              "type": "text",
-              "label": "Amount of duty overclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "beerGroupOverClaim",
-          "type": "group",
-          "label": "Beer",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "beerDutyOverClaimed",
-              "type": "text",
-              "label": "Amount of duty overclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "wineGroupOverClaim",
-          "type": "group",
-          "label": "Wine/Made-wine including fortified wine",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "wineDutyOverClaimed",
-              "type": "text",
-              "label": "Amount of duty overclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "ciderGroupOverClaim",
-          "type": "group",
-          "label": "Cider and perry",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "ciderDutyOverClaimed",
-              "type": "text",
-              "label": "Amount of duty overclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "totalDutyPaidOverClaimed",
+          "id": "ggReference",
           "type": "text",
-          "label": "Total amount of duty paid",
-          "shortName": "Total amount of duty for this claim period",
-          "format": "sterling",
-          "value": "${spiritsDutyOverClaimed + beerDutyOverClaimed + wineDutyOverClaimed + ciderDutyOverClaimed}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        }
-      ]
-    },
-    {
-      "title": "Enter the start and end dates for this underclaim",
-      "includeIf": "${overUnderClaimsChoice=2}",
-      "fields": [
+          "label": "Your Government Gateway ID",
+          "value": "${auth.gg}",
+          "submitMode": "readonly"
+        },
         {
-          "id": "underclaimStartDate1",
+          "id": "currentDate",
           "type": "date",
-          "label": "Start date",
-          "helpText": "Example: 30 09 2017",
-          "errorMessage": "Please enter a valid start date"
-        },
-        {
-          "id": "underclaimEndDate1",
-          "type": "date",
-          "label": "End date",
-          "helpText": "Example: 31 12 2017",
-          "format": "after ${underclaimStartDate1}",
-          "errorMessage": "Please enter a valid end date.  Note this must be after the start date."
-        }
-      ]
-    },
-    {
-      "title": "Enter the details for underclaims from a previous period",
-      "includeIf": "${overUnderClaimsChoice=2}",
-      "description": "Select the alcoholic ingredients used in your product below.",
-      "fields": [
-        {
-          "id": "spiritsGroupUnderClaimBoth",
-          "type": "group",
-          "label": "Spirit",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "spiritsDutyUnderClaimedBoth",
-              "type": "text",
-              "label": "Amount of duty underclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "beerGroupUnderClaimBoth",
-          "type": "group",
-          "label": "Beer",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "beerDutyUnderClaimedBoth",
-              "type": "text",
-              "label": "Amount of duty underclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "wineGroupUnderClaimBoth",
-          "type": "group",
-          "label": "Wine/Made-wine including fortified wine",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "wineDutyUnderClaimedBoth",
-              "type": "text",
-              "label": "Amount of duty underclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "ciderGroupUnderClaimBoth",
-          "type": "group",
-          "label": "Cider and perry",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "ciderDutyUnderClaimedBoth",
-              "type": "text",
-              "label": "Amount of duty underclaimed",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "totalDutyPaidUnderClaimedBoth",
-          "type": "text",
-          "label": "Total amount of duty paid",
-          "shortName": "Total amount of duty for this claim period",
-          "format": "sterling",
-          "value": "${spiritsDutyUnderClaimedBoth + beerDutyUnderClaimedBoth + wineDutyUnderClaimedBoth + ciderDutyUnderClaimedBoth}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        }
-      ]
-    },
-    {
-      "title": "Enter the start and end dates for this overclaim",
-      "includeIf": "${overUnderClaimsChoice=2}",
-      "fields": [
-        {
-          "id": "overclaimStartDate1",
-          "type": "date",
-          "label": "Start date",
-          "helpText": "Example: 30 09 2017",
-          "errorMessage": "Please enter a valid start date"
-        },
-        {
-          "id": "overclaimEndDate1",
-          "type": "date",
-          "label": "End date",
-          "helpText": "Example: 31 12 2017",
-          "format": "after ${overclaimStartDate1}",
-          "errorMessage": "Please enter a valid end date.  Note this must be after the start date."
+          "label": "Your report submission date ",
+          "value": "today",
+          "submitMode": "readonly"
         }
       ]
     }
   ],
   "declarationSection": {
-    "title": "Sign and submit your return",
-    "shortName": "Sign and submit your return",
+    "title": "Data protection",
     "fields": [
       {
-        "id": "declarationNameGroup",
-        "type": "group",
-        "label": "Approver's details",
-        "helpText": "Tell us who is approving this return.",
-        "fields": [
-          {
-            "id": "declarationFullName",
-            "type": "text",
-            "label": "Full name"
-          },
-          {
-            "id": "declarationJobTitle",
-            "type": "text",
-            "label": "Job title",
-            "helpText": "Example: Finance Director"
-          }
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "Personal data collected from this form will be processed in accordance with the Data Protection Act 2018. For more information, on what data the HMRC will collect and how it is used, please see our External Privacy Notice. \n\nIf the information submitted leads to an investigation, we may pass your contact details to the relevant HMRC investigation team. We will only pass on these details with your consent, or when a legal or other overriding obligation to do so arises. \n\nIf you do not consent, all further contact with you will be handled by ???????? and the information you give us will be anonymised (as far as possible) before being passed to the investigation team. \n\nPlease select one of the following options:",
+        "infoType": "noformat"
+      },
+      {
+        "id": "givePermissionOne",
+        "type": "choice",
+        "label": "",
+        "mandatory": "no",
+        "multivalue": "yes",
+        "choices": [
+          "I give my permission for my personal data to be passed to any relevant HMRC investigation team"
         ]
       },
       {
-        "id": "declarationGroup",
-        "type": "group",
-        "label": "Declaration",
-        "fields": [
-          {
-            "id": "declarationText",
-            "type": "info",
-            "label": "",
-            "infoText": "By submitting this claim you are confirming that:  \n\n* the details you are providing are true and complete  \n* no other claim for Alcoholic Ingredients Relief has been or will be made relating to this duty",
-            "infoType": "noformat"
-          }
+        "id": "noPermissionOne",
+        "type": "choice",
+        "label": "",
+        "mandatory": "yes",
+        "multivalue": "yes",
+        "choices": [
+          "I do not give permission for my personal data to be passed to any relevant HMRC investigation team, but understand you will do so if obliged"
+        ]
+      },
+      {
+        "id": "moreInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "HMRC may need to pass on the information you supplied for legal, regulatory or operational reasons. For example, we may pass the information to the police, local authorities or other government departments. \nAgain, we will only pass on your personal data or identifying information with your explicit consent, or in the rare circumstances where a legal or other overriding obligation to do so arises. If we are able to notify you about this, we will do so as soon as practicable. \n\nPlease select one of the following options:",
+        "infoType": "noformat"
+      },
+      {
+        "id": "givePermissionTwo",
+        "type": "choice",
+        "label": "",
+        "mandatory": "no",
+        "multivalue": "yes",
+        "choices": [
+          "I give my permission for HMRC to share my personal data or identifying information in the circumstances described above"
+        ]
+      },
+      {
+        "id": "noPermissionTwo",
+        "type": "choice",
+        "label": "",
+        "mandatory": "yes",
+        "multivalue": "yes",
+        "choices": [
+          "I do not give permission for HMRC to share my personal data or identifying information, but understand that the HMRC will do so if obliged."
         ]
       }
     ]
   },
   "acknowledgementSection": {
     "title": "Acknowledgement Page",
-    "shortName": "Acknowledgement Page",
     "fields": [
       {
-        "id": "ackPageInfoTop",
-        "type": "info",
-        "label": "If you owe duty",
-        "infoText": "## If you owe duty  \n\nIf you have a Direct Debit set up for this tax, you don't need to do anything. Your payment will be collected automatically.  \n\nOtherwise, paying electronically is an easy and secure way to pay. Use the details below and make sure you include your registration number (XZGR 00000 123456) on any payment.  \n\nSort code: 08-32-00  \nAccount number: 12000903  \nAccount name: HMRC Miscellaneous",
-        "infoType": "noformat"
-      },
-      {
-        "id": "ackPageWarning",
+        "id": "submissionInformation",
         "type": "info",
         "label": "",
-        "infoText": "Make sure you pay the duty owed or you may face a penalty.",
-        "infoType": "important"
-      },
-      {
-        "id": "ackPageInfoBottom",
-        "type": "info",
-        "label": "If you need to contact us about your claim",
-        "infoText": "## If you need to contact us about your claim  \n\nCall 03000 558554 quoting your registration number XZGR 00000 123456.",
-        "infoType": "noformat"
+        "infoText": "HMRC may use information in your report to decide whether to start a criminal investigation. We may also use evidence from your report in a prosecution or other court proceedings. Where the law permits, we may share the information you have given with other agencies.\n\nHMRC will not contact you again unless we require further information. If an investigation is launched it is likely we will contact you to discuss further details on the case. This can include requesting details of the company or partnership’s prevention procedures. test the "
       }
     ]
   },
+  "_lastSaved": "",
   "submitErrorUrl": "http://www.yahoo.co.uk",
   "submitSuccessUrl": "http://www.google.co.uk"
 }
