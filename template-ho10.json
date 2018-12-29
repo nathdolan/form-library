@@ -101,6 +101,7 @@
           "id": "spreadsheet",
           "type": "file",
           "label": "",
+          "mandatory": "false",
           "errorMessage": "Upload the required return document"
         },
         {
@@ -133,6 +134,7 @@
     },
     {
       "title": "Enter your contact person's details",
+      "description": "This is the person we will contact if we need to discuss your return.",
       "fields": [
         {
           "id": "name",
@@ -150,8 +152,7 @@
           "mandatory": "true",
           "errorMessage": "Enter a valid email address"
         }
-      ],
-      "description": "This is the person we will contact if we need to discuss your return."
+      ]
     }
   ],
   "declarationSection": {
@@ -196,7 +197,7 @@
             "id": "declarationText",
             "type": "info",
             "label": "",
-            "infoText": "By submitting the return, you confirm that the details provided are true and complete.",
+            "infoText": "By submitting the return, you confirm that the details provided are true and complete",
             "infoType": "noformat"
           }
         ]
