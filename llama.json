@@ -1,8 +1,8 @@
 {
   "_id": "llama",
-  "formName": "New form llama 6",
+  "formName": "New form llama 5",
   "description": "",
-  "emailTemplateId": "eeitt_submission_confirmation",
+  "emailTemplateId": "eeitt_submission_confirmation2",
   "authConfig": {
     "authModule": "hmrc"
   },
