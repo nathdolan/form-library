@@ -1,6 +1,6 @@
 {
   "_id": "testform2",
-  "formName": "New form2",
+  "formName": "New form3",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
