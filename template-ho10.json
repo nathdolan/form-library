@@ -25,7 +25,17 @@
           "label": "",
           "format": "yesno"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "wef",
+            "colour": "#fffacd",
+            "date": 1556050577212,
+            "author": "Nathan Dolan"
+          }
+        ]
+      }
     },
     {
       "title": "Hydrocarbon oils return",
@@ -38,7 +48,17 @@
           "value": "${eeitt.businessUser}",
           "submitMode": "readonly"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "meh?2\n\n",
+            "colour": "#f0fff0",
+            "date": 1556049552221,
+            "author": "Nathan Dolan"
+          }
+        ]
+      }
     },
     {
       "title": "Enter your business details",
