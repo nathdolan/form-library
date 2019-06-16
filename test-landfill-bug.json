@@ -3,6 +3,7 @@
   "formName": "Register for Aggregates Levy",
   "description": "",
   "developmentPhase": "beta",
+  "GFC579Ready": "true",
   "emailTemplateId": "al_registration_confirmation",
   "authConfig": {
     "authModule": "hmrc"
@@ -26,12 +27,26 @@
             "Local authority"
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "What is going on here???",
+            "colour": "#f0f8ff",
+            "date": 1558876411263,
+            "author": "Nathan Dolan",
+            "anchor": {
+              "govformsId": "legalStatus",
+              "anchorAttr": "anchor-choice-0"
+            }
+          }
+        ]
+      }
     },
     {
       "title": "What is your business name?",
       "shortName": "Business details",
-      "includeIf": "${!legalStatus=1}",
+      "includeIf": "${legalStatus!=1}",
       "fields": [
         {
           "id": "businessName",
@@ -711,7 +726,29 @@
           "helpText": "",
           "format": "yesno"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "",
+            "colour": "#fffacd",
+            "date": 1558874859048,
+            "author": "Nathan Dolan"
+          },
+          {
+            "text": "",
+            "colour": "#fffacd",
+            "date": 1558874863793,
+            "author": "Nathan Dolan"
+          },
+          {
+            "text": "",
+            "colour": "#fffacd",
+            "date": 1558874867392,
+            "author": "Nathan Dolan"
+          }
+        ]
+      }
     },
     {
       "title": "Have any of your business's directors been involved in any other aggregates businesses in the last 24 months?",
@@ -874,20 +911,28 @@
     {
       "id": "eeittRegistrationApi",
       "type": "handlebarsHttpApi",
-      "failOnError": false,
+      "failOnError": true,
       "profile": "des",
       "convertSingleQuotes": true,
       "uri": "/cross-regime/subscription/AGL/utr/1234567890",
       "method": "POST",
-      "payload": "{'registrationDetails': {'isrScenario': 'ZAG2','commonDetails': {'legalEntity': {'organisationType': '{{lookup ^('0') => '7'; ('1') => '1'; ('2') => '3'; ('3') => '7'; ('4') => '5'; ('5') => '5'^ (stripCommas legalStatus)}}','dateOfApplication': '{{currentDate}}','taxStartDate': '{{aggregatesDate-year}}-{{aggregatesDate-month}}-{{aggregatesDate-day}}'},'customerIdentificationNumber': {'custIDNumber': '1234567890'},'aboutBusiness': {'tradingName': '{{either busTradingname busTradingnameST busTradingnameEnter businessName titleSole}}'},'businessContactDetails': {'addressNotInUK': '0','addressInputModeIndicator': '2',{{toDesAddressWithoutPostcode \"businessAddress\"}},'postCode': '{{businessAddress-postcode}}','telephoneNumber': '{{phoneNumber}}','email': '{{email1}}'},'correspondenceAddressDifferent': '{{yesNoToEtmpChoice altAdd}}','correspondenceContactDetails': {'addressNotInUK': '0','addressInputModeIndicator': '2',{{toDesAddressWithoutPostcode \"address\"}},'postCode': '{{address-postcode}}','telephoneNumber': '{{altPhoneNumber}}','email': '{{altEmail}}'},'declarationStatus': '{{lookup ^('0') => '03'; ('1') => '02'; ('2') => '05'; ('3') => '04'; ('4') => '01'^ (stripCommas legalStatusDec)}}'},'regimeSpecificDetails': [{'paramSequence': '01','paramName': 'A_NUMBER_OF_SITES','paramValue': '{{noOfSites}}'},{'paramSequence': '01','paramName': 'A_OTHER_AG_BUSINESSES','paramValue': '{{lookup ^('0') => '1'; ('1') => '0'; (*) => '0'^ (stripCommas (either otherBusinessLtdCompany otherBusiness otherBusinessPart '1'))}}'},{{#each regNo1}}{'paramSequence': '@index','paramName': 'A_OTHR_AG_BUS_REG_NUM','paramValue': '{{.}}'},{{/each}}{{#each regNo1LtdCo}}{'paramSequence': '@index','paramName': 'A_OTHR_AG_BUS_REG_NUM','paramValue': '{{.}}'},{{/each}}{{#each regNo1Part}}{'paramSequence': '@index','paramName': 'A_OTHR_AG_BUS_REG_NUM','paramValue': '{{.}}'},{{/each}}{'paramSequence': '01','paramName': 'A_QEXTRACT','paramValue': '{{quarryPercentage}}'},{'paramSequence': '01','paramName': 'A_SANDGRAVEL','paramValue': '{{SandgravelPercentage}}'},{'paramSequence': '01','paramName': 'A_IMP_ABROAD','paramValue': '{{importPercentage}}'},{'paramSequence': '01','paramName': 'A_MOB_CRUSHER','paramValue': '{{crusherPercentage}}'},{{#each otherName}}{'paramSequence': '@index','paramName': 'A_OTHER','paramValue': '{{.}}'},{{/each}}{{#each OtherPercentage}}{'paramSequence': '@index','paramName': 'A_OTHERS_PERC','paramValue': '{{.}}'},{{/each}}{'paramSequence': '01','paramName': 'A_EXEMPT_RELIEF','paramValue': '{{yesNoToEtmpChoice exemptChoice}}'},{'paramSequence': '01','paramName': 'A_EXEMPT_RELIEF_STD','paramValue': '{{exemptLevy}}'},{'paramSequence': '01','paramName': 'A_EXEMPT_RELIEF_LOWER','paramValue': '{{relievedLevy}}'},{'paramSequence': '01','paramName': 'A_EXEMPT_RELIEF_EX','paramValue': '{{exportLevy}}'},{'paramSequence': '01','paramName': 'A_ESTIMATE','paramValue': '{{aggregatesLevy}}'},{'paramSequence': '01','paramName': 'A_TKOVER','paramValue': '{{yesNoToEtmpChoice businessTakeOver}}'},{'paramSequence': '01','paramName': 'A_TKOVER_DATE','paramValue': '{{dateToEtmpDate transferDate}}'},{'paramSequence': '01','paramName': 'A_TKOVER_PRV_NAME','paramValue': '{{prevBusinessName}}'},{'paramSequence': '01','paramName': 'A_REG_PREVIOUS','paramValue': '{{prevRegNo}}'},{'paramSequence': '01','paramName': 'A_DATA_ORIGIN','paramValue': '1'}]},'siteDetails': {'isrScenario': 'ZAG5','formData': [ {{#each siteName}} {'commonDetails': {'action': '1','siteAddress': {'tradingName': '{{.}}','siteReferenceNumber': '{{elementAt ../gridref @index}}', 'addressInputModeIndicator': '2', {{toDesAddressWithoutPostcodeFromArray \"siteAdd\" @index}},'postCode': '{{elementAt ../siteAdd-postcode @index}}','telephoneNumber': '{{elementAt sitePhone @index}}','email': '{{elementAt siteEmail @index}}'}},'regimeSpecificDetails': [{'paramSequence': '01','paramName': 'A_WB_USED_TO_WEIGHT','paramValue': '{{yesNoToEtmpChoice (elementAt weighbridgeChoice @index)}}'}]}], {{/each}} }}"
+      "payload": "{ 'legalEntity': '{{stripCommas legalStatus}}' }"
     },
     {
       "id": "HMRCDMS",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
       "dmsFormId": "ALREG",
       "customerId": "${auth.gg}",
       "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "HMRCDMS2",
+      "type": "hmrcDms",
+      "dmsFormId": "ALREG",
+      "customerId": "${auth.gg}",
+      "classificationType": "API-Success-Queue",
       "businessArea": "BT"
     }
   ],
