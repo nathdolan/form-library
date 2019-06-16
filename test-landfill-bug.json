@@ -4,7 +4,7 @@
   "description": "",
   "developmentPhase": "beta",
   "GFC579Ready": "true",
-  "emailTemplateId": "al_registration_confirmation3",
+  "emailTemplateId": "al_registration_confirmation4",
   "authConfig": {
     "authModule": "hmrc"
   },
