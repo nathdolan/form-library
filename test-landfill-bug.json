@@ -26,6 +26,43 @@
             "Unincorporated body",
             "Local authority"
           ]
+        },
+        {
+          "id": "_caseworker_formId",
+          "type": "text",
+          "label": "Submission Reference",
+          "value": "${form.submissionReference}",
+          "submitMode": "readonly"
+        },
+        {
+          "id": "_caseworker_userName",
+          "type": "text",
+          "label": "Your name"
+        },
+        {
+          "id": "revChoice",
+          "type": "revealingChoice",
+          "label": "Test rev choice",
+          "choices": [
+            "First selectable choice",
+            "Second selectable choice"
+          ],
+          "revealingFields": [
+            [
+              {
+                "id": "meh1",
+                "type": "text",
+                "label": "wefwef"
+              }
+            ],
+            [
+              {
+                "id": "meh2",
+                "type": "text",
+                "label": "ergergerg"
+              }
+            ]
+          ]
         }
       ],
       "metadata": {
@@ -902,7 +939,7 @@
         "id": "ackPageInfoBottom",
         "type": "info",
         "label": "",
-        "infoText": "You must check the guidance for this service on GOV.UK to see whether you need to fill in and send any additional forms to complete your registration (for example if your business is a partnership you must also fill in and send form AL2) if you haven't already done so.\n\nHMRC will send you a letter to confirm your registration details and return dates so that you can prepare your first Aggregates Levy return. \n\nReturns will normally cover a 3 month period but if you would like to apply for non-standard periods, such as monthly returns, or periods that match your VAT return periods, you can contact the HMRC Excise team on enquiries.eeitts@hmrc.gsi.gov.uk\n\nIf you do not use a weighbridge you will also need to get in touch with the Excise team to agree an alternative method for weighing your aggregates.",
+        "infoText": "You must check the guidance for this service on GOV.UK to see whether you need to fill in and send any additional forms to complete your registration (for example if your business is a partnership you must also fill in and send form AL2) if you haven't already done so.\n\nHMRC will send you a letter to confirm your registration details and return dates so that you can prepare your first Aggregates Levy return. \n\nReturns will normally cover a 3 month period but if you would like to apply for non-standard periods, such as monthly returns, or periods that match your VAT return periods, you can contact the HMRC Excise team on enquiries.eeitts@hmrc.gsi.gov.uk\n\nIf you do not use a weighbridge you will also need to get in touch with the Excise team to agree an alternative method for weighing your aggregates2.",
         "infoType": "noformat"
       }
     ]
