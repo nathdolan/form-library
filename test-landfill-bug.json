@@ -1,10 +1,10 @@
 {
   "_id": "test-landfill-bug",
-  "formName": "Register for Aggregates Levy3",
+  "formName": "Register for Aggregates Levy4",
   "description": "",
   "developmentPhase": "beta",
   "GFC579Ready": "true",
-  "emailTemplateId": "al_registration_confirmation5",
+  "emailTemplateId": "al_registration_confirmation",
   "authConfig": {
     "authModule": "hmrc"
   },
