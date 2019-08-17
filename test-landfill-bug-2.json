@@ -1,6 +1,6 @@
 {
   "_id": "test-landfill-bug-2",
-  "formName": "Register for Aggregates Levy2",
+  "formName": "Register for Aggregates Levy3",
   "description": "",
   "developmentPhase": "beta",
   "emailTemplateId": "al_registration_confirmation",
