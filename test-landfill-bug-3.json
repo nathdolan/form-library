@@ -757,7 +757,7 @@
       "title": "Registration numbers of the other businesses",
       "shortName": "Details of other businesses",
       "includeIf": "${otherBusinessLtdCompany = 0}",
-      "description": "Enter the Aggregates Levy registration number of each business that your business's directors have been involved in. ",
+      "description": "Enter the Aggregates Levy registration number of each business that your business's directors have been involved in.",
       "fields": [
         {
           "id": "otherRegNoLtdCo",
