@@ -3,6 +3,7 @@
   "formName": "Cash Declaration",
   "description": "",
   "developmentPhase": "beta",
+  "GFC579Ready": "true",
   "emailTemplateId": "cash_declaration",
   "emailParameters": [
     {
@@ -68,12 +69,18 @@
       "metadata": {
         "comments": [
           {
-            "text": "Oh yeah\n\n[Not sure]",
-            "colour": "#fffacd",
+            "text": "Hmmm [UR] suggests that this is not really the way to do it...\n\n[Not sure]",
+            "colour": "#f0f8ff",
             "date": 1553687362747,
+            "author": "Nathan Dolan"
+          },
+          {
+            "text": "So maybe not...",
+            "colour": "#f0fff0",
+            "date": 1553760691412,
             "author": "Nathan Dolan",
             "anchor": {
-              "govformsId": "firstName",
+              "govformsId": "lastName",
               "anchorAttr": "anchor-label"
             }
           }
@@ -353,7 +360,7 @@
             "date": 1553599791634,
             "author": "Nathan Dolan",
             "anchor": {
-              "govformsId": "startCountry",
+              "govformsId": "startName",
               "anchorAttr": "anchor-label"
             }
           }
@@ -590,7 +597,21 @@
           "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Is this right",
+            "colour": "#fffacd",
+            "date": 1553760735942,
+            "author": "Nathan Dolan",
+            "anchor": {
+              "govformsId": "null",
+              "anchorAttr": "anchor-title"
+            }
+          }
+        ]
+      }
     },
     {
       "title": "Upload details of all your currencies",
@@ -820,7 +841,21 @@
           "helpText": "For example, buying a car, going on holiday or running a business. If you do not know, enter n/a.",
           "format": "text"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "last page comment",
+            "colour": "#fffacd",
+            "date": 1553761032515,
+            "author": "Nathan Dolan",
+            "anchor": {
+              "govformsId": "cashIntent",
+              "anchorAttr": "anchor-hint"
+            }
+          }
+        ]
+      }
     },
     {
       "title": "Declaration",
@@ -858,7 +893,21 @@
           "mandatory": "false",
           "presentationHint": "invisibleInSummary"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "declaration comment",
+            "colour": "#f0f8ff",
+            "date": 1553761065269,
+            "author": "Nathan Dolan",
+            "anchor": {
+              "govformsId": "customerName",
+              "anchorAttr": "anchor-label"
+            }
+          }
+        ]
+      }
     }
   ],
   "declarationSection": {
@@ -872,7 +921,21 @@
         "infoText": "You now need to submit your form, which will give you a reference number to show customs officers.\n\nBy submitting below, you confirm that:\n\n* you are carrying £10,000 or more into or out of the UK",
         "infoType": "noformat"
       }
-    ]
+    ],
+    "metadata": {
+      "comments": [
+        {
+          "text": "testing",
+          "colour": "#fffacd",
+          "date": 1553761660285,
+          "author": "Nathan Dolan",
+          "anchor": {
+            "govformsId": "generatedId_2c5b531f_260b_48e4_929c_880fc16d78a9",
+            "anchorAttr": "anchor-info"
+          }
+        }
+      ]
+    }
   },
   "acknowledgementSection": {
     "title": "Confirmation page",
@@ -884,9 +947,22 @@
         "label": "",
         "infoText": "You need to make a copy of your submission reference. This confirms that you have made a declaration.\n\nYou should also print a copy of this form now, so you can show it to customs officers if they ask."
       }
-    ]
+    ],
+    "metadata": {
+      "comments": [
+        {
+          "text": "not sure about this",
+          "colour": "#fffacd",
+          "date": 1553761927741,
+          "author": "Nathan Dolan",
+          "anchor": {
+            "govformsId": "helpText8",
+            "anchorAttr": "anchor-info"
+          }
+        }
+      ]
+    }
   },
-  "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
   "submitSuccessUrl": "deprecated"
 }
