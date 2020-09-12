@@ -1,0 +1,342 @@
+{
+  "_id": "temp-worker-procurement-instruction",
+  "formName": "Instructions to Legal Services for new contract – Temporary Workers",
+  "description": "",
+  "formCategory": "ofstedDefault",
+  "developmentPhase": "alpha",
+  "GFC579Ready": "true",
+  "emailTemplateId": "",
+  "authConfig": {
+    "authModule": "anonymous"
+  },
+  "sections": [
+    {
+      "title": "Before you start",
+      "fields": [
+        {
+          "id": "beforeYouStartInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "This service is to be used for call offs from external frameworks (eg CCS/ESPO) to\nrecruit temporary workers from recruitment agencies\n\n\n###Before instructing Legal Services\n\n1. Ascertain the value of your contract as this will determine what approvals you need e.g. Board, CEO, MHCLG etc and also whether Cabinet Office approval is needed to exceed Government spend controls.\n2. Ascertain the start date for the contract. This may also influence the choice of Procurement Process, as some frameworks will require “further competitions” to select which framework member should be a party to the contract.\n3. Confirm that you have discussed your choice of external Framework with the Central Procurement team and that they agree that the method of award to the recruitment agency is lawful and appropriate for your recruitment.\n4. Confirm that you have all necessary Homes England budget approvals in accordance with the scheme of delegation for your contract\n5. Confirm that you have checked whether there are likely to be any off-payroll working issues arising from your contract. This is most likely where a contractor will be working within Homes England in a similar way to a Homes England employee. For more information, see our guide to the mandatory IR35 procedures. Any contract where the person will be paid via off-payroll arrangements will need to be approved by Lynda McMullen or Jane Caster before it can be entered into.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Recruitment agency",
+      "fields": [
+        {
+          "id": "agencyName",
+          "type": "text",
+          "label": "Agency name"
+        },
+        {
+          "id": "agencyNumber",
+          "type": "text",
+          "label": "Agency's registered number"
+        },
+        {
+          "id": "agencyAddress",
+          "type": "address",
+          "label": "Agency address",
+          "international": "true",
+          "postcodeLookup": "true"
+        }
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Not sure it is clear to users what this is or whether it is required",
+            "colour": "#fffacd",
+            "date": 1599897811132,
+            "author": "Nathan Dolan",
+            "anchor": {
+              "govformsId": "agencyNumber",
+              "anchorAttr": "anchor-label"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "title": "Agency contact details",
+      "fields": [
+        {
+          "id": "generatedId_d33d9bd9_72a2_4f89_9113_537dd7dd9d73",
+          "type": "info",
+          "label": "",
+          "infoText": "Enter the details for your recruitment agency contact.  This should be the person from the agency that has been dealing with the procurement.",
+          "infoType": "standard"
+        },
+        {
+          "id": "agencyContactName",
+          "type": "text",
+          "label": "Agency contact name"
+        },
+        {
+          "id": "agencyContactEmail",
+          "type": "text",
+          "label": "Agency contact email address",
+          "format": "email"
+        },
+        {
+          "id": "agencyContactPhone",
+          "type": "text",
+          "label": "Agency contact phone number",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "Which framework is being used?",
+      "fields": [
+        {
+          "id": "framework",
+          "type": "revealingChoice",
+          "label": "Which framework is being used?",
+          "choices": [
+            "CCS",
+            "ESPO",
+            "Other"
+          ],
+          "revealingFields": [
+            [],
+            [],
+            [
+              {
+                "id": "otherFramework",
+                "type": "text",
+                "label": "Name of framework"
+              }
+            ]
+          ]
+        },
+        {
+          "id": "frameworkRefNum",
+          "type": "text",
+          "label": "Framework reference number",
+          "helpText": "Leave blank if there is no reference number",
+          "mandatory": "false"
+        },
+        {
+          "id": "frameworkLotNumber",
+          "type": "text",
+          "label": "Framework lot number",
+          "helpText": "Leave blank if the frameworker does not have lots",
+          "mandatory": "false"
+        }
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "If this is only relevant for some frameworkers,  this could sit under the framework selection so it is only asked for where relevant for the selected framework",
+            "colour": "#fffacd",
+            "date": 1599897702515,
+            "author": "Nathan Dolan",
+            "anchor": {
+              "govformsId": "frameworkRefNum",
+              "anchorAttr": "anchor-label"
+            }
+          },
+          {
+            "text": "Ditto this",
+            "colour": "#fffacd",
+            "date": 1599897744226,
+            "author": "Nathan Dolan",
+            "anchor": {
+              "govformsId": "frameworkLotNumber",
+              "anchorAttr": "anchor-label"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "title": "Is this a direct award?",
+      "fields": [
+        {
+          "id": "directAward",
+          "type": "choice",
+          "label": "Is this a direct award",
+          "choices": [
+            "Yes",
+            "No - it is by way\nof further competition"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Role requirements",
+      "fields": [
+        {
+          "id": "generatedId_18832741_9d12_4c20_b0a9_fa0ebb13153f",
+          "type": "info",
+          "label": "",
+          "infoText": "Our role requirements document(s) should include information like the number and description of roles required and experience required for them.",
+          "infoType": "standard"
+        },
+        {
+          "id": "roleRequirementGroup",
+          "type": "group",
+          "label": "",
+          "repeatsMin": 1,
+          "repeatsMax": 99,
+          "repeatAddAnotherText": "Add another",
+          "fields": [
+            {
+              "id": "roleRequirementFile",
+              "type": "file",
+              "label": "Role requirements document",
+              "helpText": "Attach a copy of our requirements as was\nprovided to the recruitment agencies.  Use the Add another link to add additional requirements documents if required."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Agency responses",
+      "fields": [
+        {
+          "id": "generatedId_49cacbd7_c537_4398_ae45_484a4aa67def",
+          "type": "info",
+          "label": "",
+          "infoText": "Attach a copy of the response that was received from the recruitment agency.  Use the Add another link to add additional response documents if required.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "agencyResponseGroup",
+          "type": "group",
+          "label": "",
+          "repeatsMin": 1,
+          "repeatsMax": 99,
+          "repeatAddAnotherText": "Add another",
+          "fields": [
+            {
+              "id": "agencyResponseFile",
+              "type": "file",
+              "label": "Agency response document"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Selected temporary workers",
+      "fields": [
+        {
+          "id": "workerNamesAvailable",
+          "type": "choice",
+          "label": "Do we have names of the temporary worker(s) to be recruited?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Temporary worker names",
+      "includeIf": "${ workerNamesAvailable = 0 }",
+      "fields": [
+        {
+          "id": "generatedId_e029c36e_2735_4801_85fe_53d9f3e1b3b0",
+          "type": "info",
+          "label": "",
+          "infoText": "Enter the names of the temporary workers to be recruited.  Use the Add another link to add more names.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "workerNamesGroup",
+          "type": "group",
+          "label": "",
+          "repeatsMin": 1,
+          "repeatsMax": 99,
+          "fields": [
+            {
+              "id": "workerFullName",
+              "type": "text",
+              "label": "Full name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Terms",
+      "fields": [
+        {
+          "id": "poNumber",
+          "type": "text",
+          "label": "Purchase Order number",
+          "helpText": "Leave blank if not known",
+          "mandatory": "false"
+        },
+        {
+          "id": "contractStartDate",
+          "type": "date",
+          "label": "Contract start date"
+        },
+        {
+          "id": "contractTerm",
+          "type": "text",
+          "label": "Length of contract",
+          "format": "positiveNumber(3, 0, 'months')",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "ratePayable",
+          "type": "text",
+          "label": "Daily rate payable",
+          "format": "sterling",
+          "displayWidth": ""
+        },
+        {
+          "id": "invoicingTerms",
+          "type": "text",
+          "label": "Invoicing terms",
+          "multiline": "true"
+        },
+        {
+          "id": "paymentTerms",
+          "type": "text",
+          "label": "Payment terms",
+          "multiline": "true"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "This declaration page can be removed by removing all fields within it.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackPageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "This acknowledgement page at the end of the journey is mandatory.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "changeStatusDestination",
+      "type": "stateTransition",
+      "requiredState": "Submitted"
+    }
+  ],
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
