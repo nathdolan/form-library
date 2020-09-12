@@ -7,7 +7,7 @@
   "GFC579Ready": "true",
   "emailTemplateId": "",
   "authConfig": {
-    "authModule": "anonymous"
+    "authModule": "awsAlbAuth"
   },
   "sections": [
     {
@@ -17,7 +17,7 @@
           "id": "beforeYouStartInfo",
           "type": "info",
           "label": "",
-          "infoText": "This service is to be used for call offs from external frameworks (eg CCS/ESPO) to\nrecruit temporary workers from recruitment agencies\n\n\n###Before instructing Legal Services\n\n1. Ascertain the value of your contract as this will determine what approvals you need e.g. Board, CEO, MHCLG etc and also whether Cabinet Office approval is needed to exceed Government spend controls.\n2. Ascertain the start date for the contract. This may also influence the choice of Procurement Process, as some frameworks will require “further competitions” to select which framework member should be a party to the contract.\n3. Confirm that you have discussed your choice of external Framework with the Central Procurement team and that they agree that the method of award to the recruitment agency is lawful and appropriate for your recruitment.\n4. Confirm that you have all necessary Homes England budget approvals in accordance with the scheme of delegation for your contract\n5. Confirm that you have checked whether there are likely to be any off-payroll working issues arising from your contract. This is most likely where a contractor will be working within Homes England in a similar way to a Homes England employee. For more information, see our guide to the mandatory IR35 procedures. Any contract where the person will be paid via off-payroll arrangements will need to be approved by Lynda McMullen or Jane Caster before it can be entered into.",
+          "infoText": "This service is to be used for call offs from external frameworks (eg CCS/ESPO) to\nrecruit temporary workers from recruitment agencies\n\n\n###Before instructing Legal Services\n\n1. Ascertain the value of your contract as this will determine what approvals you need e.g. Board, CEO, MHCLG etc and also whether Cabinet Office approval is needed to exceed Government spend controls\n2. Ascertain the start date for the contract. This may also influence the choice of Procurement Process, as some frameworks will require “further competitions” to select which framework member should be a party to the contract\n3. Confirm that you have discussed your choice of external Framework with the Central Procurement team and that they agree that the method of award to the recruitment agency is lawful and appropriate for your recruitment\n4. Confirm that you have all necessary Homes England budget approvals in accordance with the scheme of delegation for your contract\n5. Confirm that you have checked whether there are likely to be any off-payroll working issues arising from your contract. This is most likely where a contractor will be working within Homes England in a similar way to a Homes England employee. For more information, see our guide to the mandatory IR35 procedures. Any contract where the person will be paid via off-payroll arrangements will need to be approved by Lynda McMullen or Jane Caster before it can be entered into",
           "infoType": "noformat"
         }
       ]
@@ -303,17 +303,203 @@
           "multiline": "true"
         }
       ]
+    },
+    {
+      "title": "Termination",
+      "fields": [
+        {
+          "id": "eitherPartyTerminationRights",
+          "type": "revealingChoice",
+          "label": "Will either party have rights to terminate the\ncontract before the end date?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "revealingFields": [
+            [
+              {
+                "id": "workerTerminationNotice",
+                "type": "text",
+                "label": "Termination notice required from worker",
+                "helpText": "Leave blank if not applicable",
+                "format": "positiveNumber(3, 0, 'days')",
+                "mandatory": "false",
+                "displayWidth": "xs"
+              },
+              {
+                "id": "orgTerminationNotice",
+                "type": "text",
+                "label": "Termination notice required from us",
+                "helpText": "Leave blank if not applicable",
+                "format": "positiveNumber(3, 0, 'days')",
+                "mandatory": "false",
+                "displayWidth": "xs"
+              },
+              {
+                "id": "terminationConditions",
+                "type": "text",
+                "label": "State any additional conditions regarding when the right to termination can be applied",
+                "mandatory": "false",
+                "multiline": "true"
+              }
+            ],
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Extensions",
+      "fields": [
+        {
+          "id": "extensionPossible",
+          "type": "revealingChoice",
+          "label": "Does the contract need to be extendable?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "revealingFields": [
+            [
+              {
+                "id": "maximumExtensionPeriod",
+                "type": "text",
+                "label": "Maximum extension period",
+                "helpText": "Leave blank if there should be no maximum",
+                "format": "positiveNumber(3, 0, 'months')",
+                "mandatory": "false",
+                "displayWidth": "xs"
+              },
+              {
+                "id": "extensionTrigger",
+                "type": "text",
+                "label": "What needs to happen to trigger a contract extension?",
+                "multiline": "true"
+              }
+            ],
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "title": "IR35 status",
+      "fields": [
+        {
+          "id": "generatedId_0e65253c_7cb4_4e4a_9bcb_fdc9517c6f48",
+          "type": "info",
+          "label": "",
+          "infoText": "The IR35 status must be obtained by running the HMRC Employment\nStatus tool",
+          "infoType": "important"
+        },
+        {
+          "id": "ir35Status",
+          "type": "revealingChoice",
+          "label": "What is the IR35 status of the contract",
+          "choices": [
+            "Inside IR35",
+            "Outside IR35"
+          ],
+          "revealingFields": [
+            [],
+            [
+              {
+                "id": "hmrcEmploymentStatusResultFile",
+                "type": "file",
+                "label": "Upload a copy of the answers and outcome from the HMRC Employment Status tool",
+                "helpText": "The HMRC Employment Status tool lets you download this as a PDF after it gives you its assessment - please attach this here"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Other matters",
+      "fields": [
+        {
+          "id": "otherMatters",
+          "type": "text",
+          "label": "List any other matters that are important\nfor your contract",
+          "helpText": "For example, tell us if you need\nbespoke drafting or careful checking of existing\ndrafting to ensure it meets your needs",
+          "mandatory": "false",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Approval",
+      "fields": [
+        {
+          "id": "generatedId_8be4f10c_9b2b_4338_ace3_e2b81288c0e6",
+          "type": "info",
+          "label": "",
+          "infoText": "You must obtain and attach approval from the CFO or a deputy before submitting this instruction\n\nSend an email to the CFO or a deputy stating the following:\n\n* Description of roles\n* Summary of justification/business case for contract award\n* Name of recruitment agency\n* Framework name/no.\n* Daily rate\n* Total estimated contract value\n* Date of A2R Authority to recruit\n\nThese details must match those on this instruction and the CFO or deputy must reply with confirmation that budget is available for the contract expenditure\n\n**Print the email thread including reply from CFO/deputy to PDF and attach the PDF here**",
+          "infoType": "noformat"
+        },
+        {
+          "id": "approvalSheetFile",
+          "type": "file",
+          "label": "Upload CFO/deputy approval email PDF"
+        }
+      ]
     }
   ],
   "declarationSection": {
-    "title": "Declaration",
+    "title": "Instruction declaration",
     "fields": [
       {
-        "id": "decText",
+        "id": "generatedId_1e79d78a_4c48_492d_8e75_650903f297fb",
         "type": "info",
         "label": "",
-        "infoText": "This declaration page can be removed by removing all fields within it.",
-        "infoType": "noformat"
+        "infoText": "Please check the boxes below to confirm the following then submit the form",
+        "infoType": "standard"
+      },
+      {
+        "id": "confirmProcurementDiscussion",
+        "type": "choice",
+        "label": "I have discussed the choice of Procurement Process with the Central Procurement team and they\nagree that the choice of Procurement Process is lawful and appropriate for the goods or services\nspecification",
+        "multivalue": "true",
+        "choices": [
+          "Click to confirm"
+        ]
+      },
+      {
+        "id": "confirmApprovals",
+        "type": "choice",
+        "label": "I have obtained all necessary approvals needed to enter into the contract",
+        "multivalue": "true",
+        "choices": [
+          "Click to confirm"
+        ]
+      },
+      {
+        "id": "confirmNoOffPayrollIssues",
+        "type": "choice",
+        "label": "There are no off-payroll working issues arising from the contract",
+        "multivalue": "true",
+        "choices": [
+          "Click to confirm"
+        ]
+      },
+      {
+        "id": "confirmLegalServicesContract",
+        "type": "choice",
+        "label": "I hereby instruct Legal Services to prepare a suitable contract",
+        "multivalue": "true",
+        "choices": [
+          "Click to confirm"
+        ]
+      },
+      {
+        "id": "declarationName",
+        "type": "text",
+        "label": "Your name"
+      },
+      {
+        "id": "declarationDate",
+        "type": "date",
+        "label": "Date"
       }
     ]
   },
@@ -325,7 +511,7 @@
         "id": "ackPageInfo",
         "type": "info",
         "label": "",
-        "infoText": "This acknowledgement page at the end of the journey is mandatory.",
+        "infoText": "You should use the link above to save a PDF copy of your answers.  \n\nA copy of this instruction has been sent to the legal team who will progress your instruction.",
         "infoType": "noformat"
       }
     ]
