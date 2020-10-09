@@ -1,0 +1,580 @@
+{
+  "_id": "admin-budget-business-case",
+  "formName": "Submit an administration budget business case",
+  "description": "",
+  "formCategory": "ofstedDefault",
+  "draftRetrievalMethod": "submissionReference",
+  "developmentPhase": "research",
+  "GFC579Ready": "true",
+  "emailTemplateId": "",
+  "authConfig": {
+    "authModule": "anonymous"
+  },
+  "approvers": [
+    "digital",
+    "risk",
+    "finance",
+    "strategy",
+    "legal"
+  ],
+  "reviewers": [
+    "finance"
+  ],
+  "extraProperties": {
+    "selectFormNameOnFormMessage": "Proposal title",
+    "selectFormAlertMessage": "Your progress will be saved automatically|Saved forms will be listed here until after you are notified they have been accepted by a reviewer|You cannot access forms after they have been submitted, unless they are returned to you by a reviewer",
+    "reviewingDepartmentName": "internal"
+  },
+  "sections": [
+    {
+      "title": "About your proposal",
+      "progressIndicator": "Section 1 of 8",
+      "fields": [
+        {
+          "id": "beforeYouStartInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "###Use this service to submit a business case to provide justification for all initiatives with a value above £50,000 and for all new posts",
+          "infoType": "noformat"
+        },
+        {
+          "id": "_caseworker_userName",
+          "type": "text",
+          "label": "Title of proposal"
+        },
+        {
+          "id": "proposalDescription",
+          "type": "text",
+          "label": "Description of proposal",
+          "helpText": " This should describe the proposed initiative.  You will be asked to describe the options for delivery of the initiative later.",
+          "format": "text(1,2000)",
+          "multiline": "true"
+        },
+        {
+          "id": "proposedBy",
+          "type": "text",
+          "label": "Proposed by",
+          "helpText": "Enter the name of the person making the proposal"
+        },
+        {
+          "id": "proposerEmail",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "Enter the email address of the person making the proposal",
+          "format": "email"
+        },
+        {
+          "id": "proposalDirectorate",
+          "type": "text",
+          "label": "Directorate",
+          "helpText": "For example,  Corporate Resources"
+        },
+        {
+          "id": "proposalTeam",
+          "type": "text",
+          "label": "Team",
+          "helpText": "For example,  Digital"
+        }
+      ]
+    },
+    {
+      "title": "Preferred option",
+      "progressIndicator": "Section 2 of 8",
+      "fields": [
+        {
+          "id": "economicPreferredOptionDescription",
+          "type": "text",
+          "label": "Describe the preferred option for delivering your proposal",
+          "helpText": "Maximum 600 characters.  Describe only the preferred option.  You will be asked to describe other options that were considered later.",
+          "format": "text(1,600)",
+          "multiline": "true"
+        },
+        {
+          "id": "preferredOptionBestValue",
+          "type": "choice",
+          "label": "Does your proposal represent the best value for money over other options considered?",
+          "format": "horizontal",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "economicBenefitsPreferredOption",
+          "type": "text",
+          "label": "What are the benefits of your proposal over other options considered?",
+          "helpText": "Maximum 400 characters",
+          "format": "text(1,400)",
+          "multiline": "true"
+        },
+        {
+          "id": "generatedId_6b0f5bc1_4dba_4653_9855_dbae63c0a289",
+          "type": "info",
+          "label": "",
+          "infoText": "###Cost",
+          "infoType": "noformat"
+        },
+        {
+          "id": "preferredCost2020_2021",
+          "type": "text",
+          "label": "Cost in Financial Year 2020-2021",
+          "format": "sterling"
+        },
+        {
+          "id": "preferredCost2021_2022",
+          "type": "text",
+          "label": "Cost in Financial Year 2021-2022",
+          "format": "sterling"
+        },
+        {
+          "id": "preferredCost2022_2023",
+          "type": "text",
+          "label": "Cost in Financial Year 2022-2023",
+          "format": "sterling"
+        },
+        {
+          "id": "generatedId_49d8f935_af88_4c67_a4e7_38c124f1dbec",
+          "type": "info",
+          "label": "",
+          "infoText": "###Income",
+          "infoType": "noformat"
+        },
+        {
+          "id": "preferredIncome2020_2021",
+          "type": "text",
+          "label": "Income in Financial Year 2020-2021",
+          "format": "sterling"
+        },
+        {
+          "id": "preferredIncome2021_2022",
+          "type": "text",
+          "label": "Income in Financial Year 2021-2022",
+          "format": "sterling"
+        },
+        {
+          "id": "preferredIncome2022_2023",
+          "type": "text",
+          "label": "Income in Financial Year 2022-2023",
+          "format": "sterling"
+        },
+        {
+          "id": "preferredTotalCost",
+          "type": "text",
+          "label": "Total cost",
+          "format": "sterling",
+          "value": "${preferredCost2020_2021 + preferredCost2021_2022 + preferredCost2022_2023 - preferredIncome2020_2021 - preferredIncome2021_2022 - preferredIncome2022_2023}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "costAssumptionsPreferredOption",
+          "type": "text",
+          "label": "Describe how these costs were calculated including any assumptions made",
+          "helpText": "Maximum 600 characters",
+          "format": "text(1,600)",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Alternative options considered",
+      "progressIndicator": "Section 3 of 8",
+      "fields": [
+        {
+          "id": "generatedId_105f4fb6_be17_4f03_8aa0_60206388b0f9",
+          "type": "info",
+          "label": "",
+          "infoText": "List the other, non-preferred options that have been considered for delivering the envisaged benefits \n\nAt least one non-preferred option must be given.  Add more with the Add another non-preferred option link below.",
+          "infoType": "standard"
+        },
+        {
+          "id": "economicOptionsGroup",
+          "type": "group",
+          "label": "",
+          "helpText": "",
+          "repeatsMin": 1,
+          "repeatsMax": 10,
+          "repeatLabel": "Non-preferred option $n",
+          "repeatAddAnotherText": "Add another non-preferred option",
+          "fields": [
+            {
+              "id": "economicOptionDescription",
+              "type": "text",
+              "label": "Description of non-preferred option $n",
+              "helpText": "Maximum 400 characters",
+              "format": "text(1,400)",
+              "multiline": "true"
+            },
+            {
+              "id": "generatedId_3dc58f00_3244_49d7_878b_b3e89e29e73f",
+              "type": "info",
+              "label": "",
+              "infoText": "###Cost",
+              "infoType": "noformat"
+            },
+            {
+              "id": "otherCost2020_2021",
+              "type": "text",
+              "label": "Non-preferred option $n cost in Financial Year 2020-2021",
+              "shortName": "Non-preferred option $n cost FY 2020-2021",
+              "format": "sterling"
+            },
+            {
+              "id": "otherCost2021_2022",
+              "type": "text",
+              "label": "Non-preferred option $n cost in Financial Year 2021-2022",
+              "shortName": "Non-preferred option $n cost FY 2021-20212",
+              "format": "sterling"
+            },
+            {
+              "id": "otherCost2022_2023",
+              "type": "text",
+              "label": "Non-preferred option $n cost in Financial Year 2022-2023",
+              "shortName": "Non-preferred option $n cost FY 2022-2023",
+              "format": "sterling"
+            },
+            {
+              "id": "generatedId_11b3999a_5d18_416c_8ba3_55f47a73e73a",
+              "type": "info",
+              "label": "",
+              "infoText": "###Income",
+              "infoType": "noformat"
+            },
+            {
+              "id": "otherIncome2020_2021",
+              "type": "text",
+              "label": "Non-preferred option $n income in Financial Year 2020-2021",
+              "shortName": "Non-preferred option $n income FY 2020-2021",
+              "format": "sterling"
+            },
+            {
+              "id": "otherIncome2021_2022",
+              "type": "text",
+              "label": "Non-preferred option $n income in Financial Year 2021-2022",
+              "shortName": "Non-preferred option $n income FY 2021-20212",
+              "format": "sterling"
+            },
+            {
+              "id": "otherIncome2022_2023",
+              "type": "text",
+              "label": "Non-preferred option $n income in Financial Year 2022-2023",
+              "shortName": "Non-preferred option $n income FY 2022-2023",
+              "format": "sterling"
+            },
+            {
+              "id": "otherTotalCost",
+              "type": "text",
+              "label": "Non-preferred option $n total cost",
+              "format": "sterling",
+              "value": "${otherCost2020_2021 + otherCost2021_2022 + otherCost2022_2023 - otherIncome2020_2021 - otherIncome2021_2022 - otherIncome2022_2023}",
+              "submitMode": "readonly",
+              "presentationHint": "totalValue"
+            },
+            {
+              "id": "costAssumptionsOtherOption",
+              "type": "text",
+              "label": "Describe how these costs were calculated including any assumptions made",
+              "helpText": "Maximum 600 characters",
+              "format": "text(1,600)",
+              "multiline": "true"
+            },
+            {
+              "id": "whyOptionRejected",
+              "type": "text",
+              "label": "Why was this option not selected over the preferred option?",
+              "helpText": "Maximum 400 characters",
+              "format": "text(1,400)",
+              "multiline": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Funding",
+      "progressIndicator": "Section 4 of 8",
+      "fields": [
+        {
+          "id": "fundingInDivisionalBudgets",
+          "type": "choice",
+          "label": "Is funding available within current\ndivisional budgets?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "approvedByBudgetHolder",
+          "type": "text",
+          "label": "Name of approving budget holder"
+        },
+        {
+          "id": "dateOfBudgetHolderApproval",
+          "type": "date",
+          "label": "Date of budget holder approval"
+        },
+        {
+          "id": "financePerformanceReviewName",
+          "type": "text",
+          "label": "Name of Finance & Performance team reviewer"
+        },
+        {
+          "id": "financePerformanceReviewDate",
+          "type": "date",
+          "label": "Date of Finance & Performance review"
+        }
+      ]
+    },
+    {
+      "title": "Strategic case",
+      "progressIndicator": "Section 5 of 8",
+      "fields": [
+        {
+          "id": "generatedId_70b93efa_dfc5_4422_862b_52da7de19e09",
+          "type": "info",
+          "label": "",
+          "infoText": "This section needs to explain <span style=\"text-decoration: underline;\">why</span> we should do this",
+          "infoType": "important"
+        },
+        {
+          "id": "strategicHowProposalContributes",
+          "type": "text",
+          "label": "How does the proposal contribute to the delivery of the Agency’s key objectives and strategies?",
+          "helpText": "Maximum 600 characters",
+          "format": "text(1,600)",
+          "multiline": "true"
+        },
+        {
+          "id": "strategicBusinessNeed",
+          "type": "text",
+          "label": "What is the business need that the proposal is seeking to meet?",
+          "helpText": "Maximum 600 characters",
+          "format": "text(1,600)",
+          "multiline": "true"
+        },
+        {
+          "id": "strategicQuantifiableBenefits",
+          "type": "text",
+          "label": "What are the quantifiable benefits that will result?",
+          "helpText": "Maximum 600 characters",
+          "format": "text(1,600)",
+          "multiline": "true"
+        },
+        {
+          "id": "strategicQuantifiableBenefitsHow",
+          "type": "text",
+          "label": "How will the quantifiable benefits be measured?",
+          "helpText": "Maximum 600 characters",
+          "format": "text(1,600)",
+          "multiline": "true"
+        },
+        {
+          "id": "strategicUnquantifiableBenefits",
+          "type": "text",
+          "label": "What are the unquantifiable benefits that will arise?",
+          "helpText": "Maximum 600 characters",
+          "format": "text(1,600)",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Third parties and commercials",
+      "progressIndicator": "Section 6 of 8",
+      "fields": [
+        {
+          "id": "thirdPartiesRequired",
+          "type": "revealingChoice",
+          "label": "Are third parties required to deliver the preferred option?",
+          "helpText": "For example partnerships, contracts, consultants etc.",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "revealingFields": [
+            [
+              {
+                "id": "descriptionOfThirdParties",
+                "type": "text",
+                "label": "Provide details of the third parties involved in the project",
+                "format": "text(1,600)",
+                "multiline": "true"
+              }
+            ],
+            []
+          ]
+        },
+        {
+          "id": "commercialArrangementsNecessary",
+          "type": "revealingChoice",
+          "label": "Are any commercial arrangements necessary to deliver the preferred option?",
+          "helpText": "",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "revealingFields": [
+            [
+              {
+                "id": "descriptionOfCommercialArrangements",
+                "type": "text",
+                "label": "Provide details of the commercial arrangements required",
+                "format": "text(1,600)",
+                "multiline": "true"
+              },
+              {
+                "id": "howCommercialArrangementsPutInPlace",
+                "type": "text",
+                "label": "How will the commercial arrangements be put in place?",
+                "multiline": "true"
+              }
+            ],
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Finance details",
+      "progressIndicator": "Section 7 of 8",
+      "fields": [
+        {
+          "id": "generatedId_38f2e875_eafc_44de_b612_7240dde25304",
+          "type": "info",
+          "label": "",
+          "infoText": "This section needs to explain <span style=\"text-decoration: underline;\">how</span> we afford the project",
+          "infoType": "important"
+        },
+        {
+          "id": "totalCostDisplay",
+          "type": "text",
+          "label": "Total cost",
+          "format": "sterling",
+          "value": "${preferredTotalCost}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "percentRDEL",
+          "type": "text",
+          "label": "What percentage of the total cost is RDEL?",
+          "format": "positiveNumber(2, 2, '% RDEL')",
+          "displayWidth": "xs",
+          "validIf": "${ percentRDEL + percentCDEL = 100}",
+          "errorMessage": "The RDEL and CDEL percent split must total 100%"
+        },
+        {
+          "id": "percentCDEL",
+          "type": "text",
+          "label": "What percentage of the total cost is CDEL?",
+          "format": "positiveNumber(2, 2, '% CDEL')",
+          "displayWidth": "xs",
+          "validIf": "${ percentRDEL + percentCDEL = 100}",
+          "errorMessage": "The RDEL and CDEL percent split must total 100%"
+        },
+        {
+          "id": "whereWillFundingComeFrom",
+          "type": "text",
+          "label": "Where will the funding come from?",
+          "helpText": "Maximum 400 characters",
+          "format": "text(1,400)",
+          "multiline": "true"
+        },
+        {
+          "id": "impactOnAdminBudgetBalance",
+          "type": "text",
+          "label": "Describe the impact of the project on the Agency's Administration budget and balance sheet",
+          "helpText": "Maximum 400 characters",
+          "format": "text(1,400)",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Management case",
+      "progressIndicator": "Section 8 of 8",
+      "fields": [
+        {
+          "id": "generatedId_9024f6e9_dd36_4c82_817f_6c43d88995a2",
+          "type": "info",
+          "label": "",
+          "infoText": "This section needs to explain <span style=\"text-decoration: underline;\">how</span> the proposal will be implemented",
+          "infoType": "important"
+        },
+        {
+          "id": "implementationStartDate",
+          "type": "date",
+          "label": "Project implementation start date"
+        },
+        {
+          "id": "implementationEndDate",
+          "type": "date",
+          "label": "Project implementation completion date"
+        },
+        {
+          "id": "timescalesForImplementation",
+          "type": "text",
+          "label": "Describe any major milestones between project implementation start and completion",
+          "format": "text(1,600)",
+          "multiline": "true"
+        },
+        {
+          "id": "implementationRisks",
+          "type": "text",
+          "label": "Describe any major risks identified that may threaten the achievement of perceived benefits",
+          "format": "text(1,600)",
+          "multiline": "true"
+        },
+        {
+          "id": "implementationRisksHowManaged",
+          "type": "text",
+          "label": "How will the identified risks will be managed?",
+          "format": "text(1,600)",
+          "multiline": "true"
+        },
+        {
+          "id": "implementationResponsibility",
+          "type": "text",
+          "label": "Who are the key people, roles and suppliers responsible for implementing the project?",
+          "format": "text(1,600)",
+          "multiline": "true"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "fields": []
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackPageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "This acknowledgement page at the end of the journey is mandatory.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "testSendEmailDestination",
+      "type": "formContentEmail",
+      "failOnError": false,
+      "uri": "govuk-notify",
+      "profile": "utils",
+      "emailTemplateId": "c7e3958d-088b-477d-9f27-d863ddf04a34",
+      "emailAddress": "nathan@govforms.co.uk"
+    },
+    {
+      "id": "changeStatusDestination",
+      "type": "stateTransition",
+      "requiredState": "NeedsReview"
+    }
+  ],
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
